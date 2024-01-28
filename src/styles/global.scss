@@ -70,6 +70,8 @@ input {
         border: 1px solid $grey;
         border-radius: 0.5rem;
         overflow: hidden;
+        display: flex;
+        flex-direction: column;
 
         &__body {
             padding: 1rem;
@@ -86,6 +88,7 @@ input {
         }
 
         &__action {
+            margin-top: auto;
             display: grid;
             grid-template-columns: repeat(2, 1fr);
 
