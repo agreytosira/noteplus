@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import getInitialData from './../utils/data';
+import FloatingButton from './FloatingButton';
 import Header from './Header';
 import NoteContainer from './NoteContainer';
 
@@ -17,6 +18,7 @@ export class NoteApp extends Component {
             <>
                 <Header />
                 <NoteContainer notes={this.state.notes} />
+                <FloatingButton />
             </>
         );
     }

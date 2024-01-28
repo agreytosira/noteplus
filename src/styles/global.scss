@@ -1,6 +1,7 @@
 $white: #eaeaea;
 $grey: #7c7c7c;
 $body: #202124;
+$blue: #005bfc;
 
 * {
     padding: 0;
@@ -123,6 +124,33 @@ input {
                 }
             }
         }
+    }
+}
+
+.floating-button {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+    background-color: $blue;
+    border: none;
+    aspect-ratio: 1/1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+        background-color: darken($blue, 20%);
+    }
+
+    svg {
+        width: 2rem;
+        height: 2rem;
+        color: white;
     }
 }
 
