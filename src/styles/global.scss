@@ -1,4 +1,6 @@
 $white: #eaeaea;
+$grey: #7c7c7c;
+$body: #202124;
 
 * {
     padding: 0;
@@ -8,21 +10,27 @@ $white: #eaeaea;
 }
 
 body {
-    background-color: #202124;
+    background-color: $body;
     color: $white;
 }
 
 input {
     padding: 0.5rem 0.75rem;
     background: none;
-    border: 1px solid $white;
+    border: 1px solid $grey;
     color: $white;
     border-radius: 0.25rem;
 }
 
+// Header
+
 .header {
     padding: 0.75rem 0;
-    border-bottom: 1px solid $white;
+    border-bottom: 1px solid $grey;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: $body;
 
     &__container {
         display: flex;
@@ -35,6 +43,80 @@ input {
 
             &::placeholder {
                 font-weight: 600;
+            }
+        }
+    }
+}
+
+// Note
+
+.note {
+    margin-top: 100px;
+
+    &__container {
+        h2 {
+            margin-bottom: 1rem;
+        }
+    }
+
+    &-list {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1rem;
+    }
+
+    &-item {
+        border: 1px solid $grey;
+        border-radius: 0.5rem;
+        overflow: hidden;
+
+        &__body {
+            padding: 1rem;
+        }
+
+        &__date {
+            margin: 0.25rem 0;
+            font-size: 12px;
+            color: $grey;
+        }
+
+        &__content {
+            font-size: 14px;
+        }
+
+        &__action {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+
+            > * {
+                background: none;
+                color: $white;
+                outline: none;
+                border: 1px solid $grey;
+                padding: 0.5rem 0;
+                cursor: pointer;
+                font-weight: 600;
+                transition: all 0.3s ease;
+
+                &:nth-child(1) {
+                    color: #cf3636;
+                    border-radius: 0 0 0 5px;
+
+                    &:hover {
+                        background-color: #cf3636;
+                        color: $white;
+                    }
+                }
+
+                &:nth-child(2) {
+                    color: #fde13f;
+                    border-radius: 0 0 5px 0;
+
+                    &:hover {
+                        background-color: #fde13f;
+                        color: $body;
+                    }
+                }
             }
         }
     }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import getInitialData from './../utils/data';
 import Header from './Header';
+import NoteContainer from './NoteContainer';
 
 export class NoteApp extends Component {
     constructor(props) {
@@ -15,9 +16,7 @@ export class NoteApp extends Component {
         return (
             <>
                 <Header />
-                {this.state.notes.map((note) => (
-                    <p>{note.title}</p>
-                ))}
+                <NoteContainer />
             </>
         );
     }
