@@ -11,7 +11,7 @@ function NoteContainer({ notes }) {
                 </section>
                 <section className='note__container container'>
                     <h2>Arsip Catatan</h2>
-                    <NoteList notes={notes} isArchived={true} />
+                    <NoteList notes={notes} showArchived={true} />
                 </section>
             </main>
         </>

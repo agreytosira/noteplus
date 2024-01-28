@@ -3,7 +3,7 @@ import showFormattedDate from '../utils/format';
 
 function NoteItem({ id, title, body, createdAt }) {
     return (
-        <div className='note-item'>
+        <div className='note-item' id={id}>
             <div className='note-item__body'>
                 <h3 className='note-item__title'>{title}</h3>
                 <p className='note-item__date'>{showFormattedDate(createdAt)}</p>
