@@ -17,6 +17,7 @@ export class NoteApp extends Component {
         this.openModalHandler = this.openModalHandler.bind(this);
         this.onAddNoteHandler = this.onAddNoteHandler.bind(this);
         this.toggleArchivedHandler = this.toggleArchivedHandler.bind(this);
+        this.onDeleteHandler = this.onDeleteHandler.bind(this);
     }
 
     openModalHandler() {
@@ -42,10 +43,15 @@ export class NoteApp extends Component {
         });
     }
 
-    toggleArchivedHandler(noteId) {
+    onDeleteHandler(id) {
+        const notes = this.state.notes.filter((note) => note.id !== id);
+        this.setState({ notes });
+    }
+
+    toggleArchivedHandler(id) {
         this.setState((prevState) => {
             const updatedNotes = prevState.notes.map((note) => {
-                if (note.id === noteId) {
+                if (note.id === id) {
                     return {
                         ...note,
                         archived: !note.archived
@@ -64,7 +70,7 @@ export class NoteApp extends Component {
         return (
             <>
                 <Header />
-                <NoteContainer notes={this.state.notes} toggleArchived={this.toggleArchivedHandler} />
+                <NoteContainer notes={this.state.notes} toggleArchived={this.toggleArchivedHandler} onDelete={this.onDeleteHandler} />
                 <FloatingButton handler={this.openModalHandler} />
                 {this.state.isModalOpen && <NoteAddModal addNote={this.onAddNoteHandler} closeHandler={this.openModalHandler} />}
             </>

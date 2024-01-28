@@ -245,4 +245,10 @@ textarea {
     }
 }
 
+.message-empty {
+    grid-column: span 4;
+    text-align: center;
+    color: $grey;
+}
+
 @import './responsive';
