@@ -1,11 +1,43 @@
+$white: #eaeaea;
+
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
 }
 
 body {
-    font-family: 'Inter', sans-serif;
     background-color: #202124;
-    color: white;
+    color: $white;
 }
+
+input {
+    padding: 0.5rem 0.75rem;
+    background: none;
+    border: 1px solid $white;
+    color: $white;
+    border-radius: 0.25rem;
+}
+
+.header {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid $white;
+
+    &__container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        input {
+            width: 40%;
+            font-weight: 600;
+
+            &::placeholder {
+                font-weight: 600;
+            }
+        }
+    }
+}
+
+@import './responsive';
