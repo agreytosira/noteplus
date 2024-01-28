@@ -6,7 +6,8 @@ class NoteAddModal extends Component {
 
         this.state = {
             title: '',
-            body: ''
+            body: '',
+            charactersLeft: 50 // Set nilai awal untuk karakter yang tersisa
         };
 
         this.onTitleChangeHandler = this.onTitleChangeHandler.bind(this);
@@ -15,29 +16,34 @@ class NoteAddModal extends Component {
     }
 
     onTitleChangeHandler(event) {
-        this.setState(() => {
-            return {
+        const titleLength = event.target.value.length;
+        if (titleLength <= 50) {
+            this.setState(() => ({
+                charactersLeft: 50 - titleLength,
                 title: event.target.value
-            };
-        });
+            }));
+        }
     }
 
     onBodyChangeHandler(event) {
-        this.setState(() => {
-            return {
-                body: event.target.value
-            };
-        });
+        this.setState(() => ({
+            body: event.target.value
+        }));
     }
 
     onSubmitEventHandler(event) {
         event.preventDefault();
-        this.props.addNote(this.state);
+        this.props.addNote({
+            title: this.state.title,
+            body: this.state.body
+        });
 
         this.props.closeHandler();
     }
 
     render() {
+        const { title, body, charactersLeft } = this.state;
+
         return (
             <div className='note-modal'>
                 <div className='note-modal__container'>
@@ -45,11 +51,12 @@ class NoteAddModal extends Component {
                     <form onSubmit={this.onSubmitEventHandler}>
                         <div className='input-group'>
                             <label htmlFor='title'>Judul</label>
-                            <input type='text' name='title' value={this.state.title} onChange={this.onTitleChangeHandler} required autoFocus />
+                            <input type='text' name='title' value={title} onChange={this.onTitleChangeHandler} required autoFocus />
+                            <p className='characters-left'>Sisa Karakter: {charactersLeft}</p>
                         </div>
                         <div className='input-group'>
                             <label htmlFor='body'>Isi Catatan</label>
-                            <textarea name='body' value={this.state.body} onChange={this.onBodyChangeHandler} required></textarea>
+                            <textarea name='body' value={body} onChange={this.onBodyChangeHandler} required></textarea>
                         </div>
                         <button type='submit' className='btn-primary'>
                             Tambah Catatan
