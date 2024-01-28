@@ -16,7 +16,7 @@ export class NoteApp extends Component {
         return (
             <>
                 <Header />
-                <NoteContainer />
+                <NoteContainer notes={this.state.notes} />
             </>
         );
     }

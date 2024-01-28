@@ -1,7 +1,7 @@
 import React from 'react';
 
 function SearchBar() {
-    return <input type='search' placeholder='Search note by title here..' />;
+    return <input type='search' placeholder='Cari catatan berdasarkan judul...' />;
 }
 
 export default SearchBar;
