@@ -1,7 +1,7 @@
 import React from 'react';
 import showFormattedDate from '../utils/format';
 
-function NoteItem({ id, title, body, createdAt }) {
+function NoteItem({ id, title, body, createdAt, toggleArchived }) {
     return (
         <div className='note-item' id={id}>
             <div className='note-item__body'>
@@ -11,7 +11,7 @@ function NoteItem({ id, title, body, createdAt }) {
             </div>
             <div className='note-item__action'>
                 <button>Hapus</button>
-                <button>Arsipkan</button>
+                <button onClick={() => toggleArchived(id)}>Arsipkan</button>
             </div>
         </div>
     );
