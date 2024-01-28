@@ -172,6 +172,11 @@ textarea {
                 outline: none;
                 border: none;
                 color: $white;
+                transition: all 0.3s ease;
+
+                &:hover {
+                    background-color: darken($color: $red, $amount: 10%);
+                }
 
                 svg {
                     width: 1.5rem;

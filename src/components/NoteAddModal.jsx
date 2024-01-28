@@ -9,7 +9,7 @@ class NoteAddModal extends Component {
                     <form>
                         <div className='input-group'>
                             <label htmlFor='title'>Judul</label>
-                            <input type='text' name='title' required />
+                            <input type='text' name='title' required autoFocus />
                         </div>
                         <div className='input-group'>
                             <label htmlFor='body'>Isi Catatan</label>
