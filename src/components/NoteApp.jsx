@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import getInitialData from './../utils/data';
 import FloatingButton from './FloatingButton';
 import Header from './Header';
+import NoteAddModal from './NoteAddModal';
 import NoteContainer from './NoteContainer';
 
 export class NoteApp extends Component {
@@ -9,8 +10,17 @@ export class NoteApp extends Component {
         super(props);
 
         this.state = {
-            notes: getInitialData()
+            notes: getInitialData(),
+            isModalOpen: false
         };
+
+        this.openModalHandler = this.openModalHandler.bind(this);
+    }
+
+    openModalHandler() {
+        this.setState((prevState) => ({
+            isModalOpen: !prevState.isModalOpen
+        }));
     }
 
     render() {
@@ -18,7 +28,8 @@ export class NoteApp extends Component {
             <>
                 <Header />
                 <NoteContainer notes={this.state.notes} />
-                <FloatingButton />
+                <FloatingButton handler={this.openModalHandler} />
+                {this.state.isModalOpen && <NoteAddModal handler={this.openModalHandler} />}
             </>
         );
     }
