@@ -1,6 +1,35 @@
-@media screen and (min-width: 768px) {
-    .container {
-        max-width: 90%;
-        margin: auto;
+@media screen and (min-width: 425px) {
+  .header {
+    &__brand {
+      font-size: 2rem;
     }
+
+    &__container {
+      input {
+        width: 30%;
+      }
+    }
+  }
+
+  .note {
+    &-list {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .note {
+    &-list {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .note {
+    &-list {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
 }
