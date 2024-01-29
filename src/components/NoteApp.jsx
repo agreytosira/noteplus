@@ -4,19 +4,23 @@ import FloatingButton from './FloatingButton'
 import Header from './Header'
 import NoteAddModal from './NoteAddModal'
 import NoteContainer from './NoteContainer'
+import SearchBar from './SearchBar' // Import komponen SearchBar
 
 export class NoteApp extends Component {
   constructor(props) {
     super(props)
+
     this.state = {
       notes: getInitialData(),
-      isModalOpen: false
+      isModalOpen: false,
+      searchKeyword: ''
     }
 
     this.openModalHandler = this.openModalHandler.bind(this)
     this.onAddNoteHandler = this.onAddNoteHandler.bind(this)
     this.toggleArchivedHandler = this.toggleArchivedHandler.bind(this)
     this.onDeleteHandler = this.onDeleteHandler.bind(this)
+    this.onSearchHandler = this.onSearchHandler.bind(this)
   }
 
   openModalHandler() {
@@ -65,11 +69,21 @@ export class NoteApp extends Component {
     })
   }
 
+  onSearchHandler(keyword) {
+    this.setState(() => {
+      return {
+        searchKeyword: keyword
+      }
+    })
+  }
+
   render() {
+    const filteredNotes = this.state.notes.filter((note) => note.title.toLowerCase().includes(this.state.searchKeyword.toLowerCase()))
+
     return (
       <>
-        <Header />
-        <NoteContainer notes={this.state.notes} toggleArchived={this.toggleArchivedHandler} onDelete={this.onDeleteHandler} />
+        <Header searchHandler={this.onSearchHandler} />
+        <NoteContainer notes={filteredNotes} toggleArchived={this.toggleArchivedHandler} onDelete={this.onDeleteHandler} />
         <FloatingButton handler={this.openModalHandler} />
         {this.state.isModalOpen && <NoteAddModal addNote={this.onAddNoteHandler} closeHandler={this.openModalHandler} />}
       </>
