@@ -39,7 +39,7 @@ export class NoteApp extends Component {
             id: +new Date(),
             title,
             body,
-            createdAt: +new Date(),
+            createdAt: new Date().toISOString(),
             archived: false
           }
         ]
