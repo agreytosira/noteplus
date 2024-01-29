@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Swal from 'sweetalert2'
 
 class NoteAddModal extends Component {
   constructor(props) {
@@ -38,6 +39,13 @@ class NoteAddModal extends Component {
       body: this.state.body
     })
 
+    Swal.fire({
+      title: 'Berhasil Tambah Catatan',
+      text: `Catatan dengan judul ${this.state.title} berhasil ditambahkan`,
+      icon: 'success',
+      timer: 1000,
+      showConfirmButton: false
+    })
     this.props.closeHandler()
   }
 

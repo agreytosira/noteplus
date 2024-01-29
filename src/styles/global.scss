@@ -1,6 +1,6 @@
 $white: #eaeaea;
 $grey: #7c7c7c;
-$body: #202124;
+$body: #0a192f;
 $blue: #005bfc;
 $red: #cf3636;
 $yellow: #fde13f;
@@ -40,7 +40,7 @@ textarea {
   border-top: 1px solid $grey;
   text-align: center;
   color: $white;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 // Header
@@ -288,6 +288,15 @@ textarea {
   font-weight: 400;
   margin-left: auto;
   font-size: 12px;
+}
+
+// Sweetalert
+.swal2-popup,
+.swal2-success-circular-line-right,
+.swal2-success-circular-line-left,
+.swal2-success-fix {
+  background: lighten($color: $body, $amount: 5%) !important;
+  color: $white !important;
 }
 
 @import './responsive';
