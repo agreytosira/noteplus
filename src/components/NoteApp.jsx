@@ -5,6 +5,7 @@ import Header from './Header'
 import NoteAddModal from './NoteAddModal'
 import NoteContainer from './NoteContainer'
 import SearchBar from './SearchBar' // Import komponen SearchBar
+import Footer from './Footer'
 
 export class NoteApp extends Component {
   constructor(props) {
@@ -86,6 +87,7 @@ export class NoteApp extends Component {
         <NoteContainer notes={filteredNotes} toggleArchived={this.toggleArchivedHandler} onDelete={this.onDeleteHandler} />
         <FloatingButton handler={this.openModalHandler} />
         {this.state.isModalOpen && <NoteAddModal addNote={this.onAddNoteHandler} closeHandler={this.openModalHandler} />}
+        <Footer />
       </>
     )
   }
