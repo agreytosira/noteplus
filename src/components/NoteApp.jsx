@@ -84,7 +84,7 @@ export class NoteApp extends Component {
       <>
         <Header searchHandler={this.onSearchHandler} />
         <NoteContainer notes={filteredNotes} toggleArchived={this.toggleArchivedHandler} onDelete={this.onDeleteHandler} />
-        <FloatingButton handler={this.openModalHandler} />
+        <FloatingButton openHandler={this.openModalHandler} />
         {this.state.isModalOpen && <NoteAddModal addNote={this.onAddNoteHandler} closeHandler={this.openModalHandler} />}
         <Footer />
       </>
