@@ -4,7 +4,6 @@ import FloatingButton from './FloatingButton'
 import Header from './Header'
 import NoteAddModal from './NoteAddModal'
 import NoteContainer from './NoteContainer'
-import SearchBar from './SearchBar' // Import komponen SearchBar
 import Footer from './Footer'
 
 export class NoteApp extends Component {
