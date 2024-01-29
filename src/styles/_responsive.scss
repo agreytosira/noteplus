@@ -18,10 +18,26 @@
   }
 }
 
+@media screen and (min-width: 500px) {
+  .note {
+    &-modal {
+      &__container {
+        width: 60%;
+      }
+    }
+  }
+}
+
 @media screen and (min-width: 768px) {
   .note {
     &-list {
       grid-template-columns: repeat(3, 1fr);
+    }
+
+    &-modal {
+      &__container {
+        width: 40%;
+      }
     }
   }
 }
@@ -30,6 +46,12 @@
   .note {
     &-list {
       grid-template-columns: repeat(4, 1fr);
+    }
+
+    &-modal {
+      &__container {
+        width: 30%;
+      }
     }
   }
 }
