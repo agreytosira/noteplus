@@ -17,7 +17,7 @@ function confirmDelete(id, onDelete, title) {
         title: 'Berhasil!',
         text: `Catatan dengan judul ${title} berhasil dihapus`,
         icon: 'success',
-        confirmButtonText: 'OK'
+        timer: 1000
       })
     }
   })

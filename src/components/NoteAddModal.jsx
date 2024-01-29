@@ -43,8 +43,7 @@ class NoteAddModal extends Component {
       title: 'Berhasil Tambah Catatan',
       text: `Catatan dengan judul ${this.state.title} berhasil ditambahkan`,
       icon: 'success',
-      timer: 1000,
-      showConfirmButton: false
+      timer: 1000
     })
     this.props.closeHandler()
   }
