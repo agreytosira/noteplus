@@ -1,5 +1,5 @@
 import React from 'react'
-import showFormattedDate from '../utils/format'
+import { showFormattedDate } from '../utils/format'
 import Swal from 'sweetalert2'
 
 function confirmDelete(id, onDelete, title) {
