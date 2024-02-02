@@ -1,10 +1,11 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { getNote } from '../utils/data';
+import { getNote, deleteNote } from '../utils/data';
 import { Link } from 'react-router-dom';
 import { showFormattedDate } from '../utils/format';
+import FloatingButton from '../components/FloatingButton';
 
-function Detail() {
+function Detail({ onDelete }) {
     const { id } = useParams();
     const { title, body, createdAt } = getNote(id);
 
@@ -22,6 +23,9 @@ function Detail() {
                     <span>Dibuat pada {showFormattedDate(createdAt)}</span>
                     <p>{body}</p>
                 </div>
+                <FloatingButton onDelete={onDelete} id={id} title={title}>
+                    Delete
+                </FloatingButton>
             </main>
         </>
     );

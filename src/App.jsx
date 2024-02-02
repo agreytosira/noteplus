@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
-import { getAllNotes } from './utils/data';
+import { deleteNote, getAllNotes } from './utils/data';
 import FloatingButton from './components/FloatingButton';
 import NoteAddModal from './components/NoteAddModal';
 import Header from './components/Header';
 import HomePage from './pages/HomePage';
 import Footer from './components/Footer';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import Detail from './pages/Detail';
+import Swal from 'sweetalert2';
+
+function NoteAppWrapper() {
+    const navigate = useNavigate();
+
+    return <NoteApp navigate={navigate} />;
+}
 
 export class NoteApp extends Component {
     constructor(props) {
@@ -48,9 +55,31 @@ export class NoteApp extends Component {
         });
     }
 
-    onDeleteHandler(id) {
-        const notes = this.state.notes.filter((note) => note.id !== id);
-        this.setState({ notes });
+    onDeleteHandler(id, title) {
+        Swal.fire({
+            title: 'Yakin hapus data catatan?',
+            text: 'Kamu tidak akan bisa mengembalikan catatan yang sudah dihapus!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Ya, hapus!',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: 'Berhasil!',
+                    text: `Catatan dengan judul ${title} berhasil dihapus`,
+                    icon: 'success',
+                    timer: 1000
+                });
+                deleteNote(id);
+                this.props.navigate('/');
+                this.setState(() => {
+                    return {
+                        notes: getAllNotes()
+                    };
+                });
+            }
+        });
     }
 
     toggleArchivedHandler(id) {
@@ -86,9 +115,9 @@ export class NoteApp extends Component {
             <>
                 <Header searchHandler={this.onSearchHandler} />
                 <Routes>
-                    <Route path='/' element={<HomePage notes={filteredNotes} toggleArchived={this.toggleArchivedHandler} onDelete={this.onDeleteHandler} />} />
-                    <Route path='/archived' element={<HomePage notes={filteredNotes} toggleArchived={this.toggleArchivedHandler} onDelete={this.onDeleteHandler} showArchived={true} />} />
-                    <Route path='/note/:id' element={<Detail />} />
+                    <Route path='/' element={<HomePage notes={filteredNotes} toggleArchived={this.toggleArchivedHandler} />} />
+                    <Route path='/archived' element={<HomePage notes={filteredNotes} toggleArchived={this.toggleArchivedHandler} showArchived={true} />} />
+                    <Route path='/note/:id' element={<Detail onDelete={this.onDeleteHandler} />} />
                 </Routes>
 
                 {/* <HomePage notes={filteredNotes} toggleArchived={this.toggleArchivedHandler} onDelete={this.onDeleteHandler} />
@@ -101,4 +130,4 @@ export class NoteApp extends Component {
     }
 }
 
-export default NoteApp;
+export default NoteAppWrapper;
