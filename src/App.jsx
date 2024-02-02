@@ -58,7 +58,7 @@ export class NoteApp extends Component {
 
     onArchiveHandler(id, title) {
         Swal.fire({
-            title: 'Berhasil!',
+            title: 'Berhasil Arsipkan Catatan!',
             text: `Catatan dengan judul ${title} telah diarsipkan`,
             icon: 'success',
             timer: 1000
@@ -74,7 +74,7 @@ export class NoteApp extends Component {
 
     onUnarchiveHandler(id, title) {
         Swal.fire({
-            title: 'Berhasil!',
+            title: 'Berhasil Aktifkan Catatan!',
             text: `Catatan dengan judul ${title} telah diaktifkan kembali`,
             icon: 'success',
             timer: 1000
@@ -99,7 +99,7 @@ export class NoteApp extends Component {
         }).then((result) => {
             if (result.isConfirmed) {
                 Swal.fire({
-                    title: 'Berhasil!',
+                    title: 'Berhasil Hapus Catatan!',
                     text: `Catatan dengan judul ${title} berhasil dihapus`,
                     icon: 'success',
                     timer: 1000
