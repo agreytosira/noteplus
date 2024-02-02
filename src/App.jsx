@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
-import getInitialData from './utils/data';
+import { getAllNotes } from './utils/data';
 import FloatingButton from './components/FloatingButton';
 import NoteAddModal from './components/NoteAddModal';
 import Header from './components/Header';
 import HomePage from './pages/HomePage';
 import Footer from './components/Footer';
 import { Routes, Route } from 'react-router-dom';
+import Detail from './pages/Detail';
 
 export class NoteApp extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            notes: getInitialData(),
+            notes: getAllNotes(),
             isModalOpen: false,
             searchKeyword: ''
         };
@@ -87,6 +88,7 @@ export class NoteApp extends Component {
                 <Routes>
                     <Route path='/' element={<HomePage notes={filteredNotes} toggleArchived={this.toggleArchivedHandler} onDelete={this.onDeleteHandler} />} />
                     <Route path='/archived' element={<HomePage notes={filteredNotes} toggleArchived={this.toggleArchivedHandler} onDelete={this.onDeleteHandler} showArchived={true} />} />
+                    <Route path='/note/:id' element={<Detail />} />
                 </Routes>
 
                 {/* <HomePage notes={filteredNotes} toggleArchived={this.toggleArchivedHandler} onDelete={this.onDeleteHandler} />
