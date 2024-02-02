@@ -376,12 +376,18 @@ textarea {
 }
 
 .btn-link {
+    background: none;
+    outline: none;
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
     display: flex;
     align-items: center;
     gap: 0.25rem;
     color: $white;
     text-decoration: none;
     transition: all 0.3s ease;
+    cursor: pointer;
 
     &:hover {
         color: $blue;
