@@ -15,6 +15,8 @@ function HomePage({ notes, showArchived }) {
                                     <Link to='/' className={!showArchived ? 'active' : ''}>
                                         Sedang Aktif
                                     </Link>
+                                </li>
+                                <li>
                                     <Link to='/archived' className={showArchived ? 'active' : ''}>
                                         Diarsipkan
                                     </Link>

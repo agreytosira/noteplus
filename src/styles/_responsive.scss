@@ -1,57 +1,75 @@
 @media screen and (min-width: 425px) {
-  .header {
-    &__brand {
-      font-size: 2rem;
+    .header {
+        &__brand {
+            font-size: 2rem;
+        }
+
+        &__container {
+            input {
+                width: 30%;
+            }
+        }
     }
 
-    &__container {
-      input {
-        width: 30%;
-      }
+    .note {
+        &-list {
+            grid-template-columns: repeat(2, 1fr);
+        }
     }
-  }
-
-  .note {
-    &-list {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
 }
 
 @media screen and (min-width: 500px) {
-  .note {
-    &-modal {
-      &__container {
-        width: 60%;
-      }
+    .note {
+        &-modal {
+            &__container {
+                width: 60%;
+            }
+        }
+
+        &__navigation {
+            flex-direction: row;
+        }
     }
-  }
 }
 
 @media screen and (min-width: 768px) {
-  .note {
-    &-list {
-      grid-template-columns: repeat(3, 1fr);
-    }
+    .note {
+        &-list {
+            grid-template-columns: repeat(3, 1fr);
+        }
 
-    &-modal {
-      &__container {
-        width: 40%;
-      }
+        &-modal {
+            &__container {
+                width: 40%;
+            }
+        }
+
+        &-detail__container {
+            max-width: 50%;
+        }
     }
-  }
 }
 
 @media screen and (min-width: 1024px) {
-  .note {
-    &-list {
-      grid-template-columns: repeat(4, 1fr);
-    }
+    .note {
+        &-list {
+            grid-template-columns: repeat(4, 1fr);
+        }
 
-    &-modal {
-      &__container {
-        width: 30%;
-      }
+        &-modal {
+            &__container {
+                width: 30%;
+            }
+        }
     }
-  }
+}
+
+@media screen and (min-width: 1367px) {
+    .note {
+        &-detail {
+            &__container {
+                max-width: 35%;
+            }
+        }
+    }
 }

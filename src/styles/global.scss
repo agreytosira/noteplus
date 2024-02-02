@@ -103,8 +103,6 @@ textarea {
         margin-bottom: 50px;
 
         &__container {
-            max-width: 50%;
-
             h1 {
                 margin-top: 1rem;
                 font-size: 3rem;
@@ -127,6 +125,30 @@ textarea {
     &__navigation {
         display: flex;
         justify-content: space-between;
+        flex-direction: column;
+        margin-bottom: 2rem;
+
+        nav {
+            background-color: lighten($body, 5%);
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+
+            ul {
+                align-items: stretch;
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+
+                li {
+                    a {
+                        display: flex;
+                        text-align: center;
+                        height: 100%;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                }
+            }
+        }
 
         ul {
             li {
