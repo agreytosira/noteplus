@@ -26,20 +26,6 @@
             }
         }
 
-        &-detail {
-            .floating-button {
-                button {
-                    height: 4rem;
-                    width: 4rem;
-
-                    svg {
-                        width: 2rem;
-                        height: 2rem;
-                    }
-                }
-            }
-        }
-
         &__navigation {
             flex-direction: row;
             align-items: center;
