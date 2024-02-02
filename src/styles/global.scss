@@ -128,6 +128,10 @@ textarea {
         flex-direction: column;
         margin-bottom: 2rem;
 
+        h2 {
+            margin-bottom: 0;
+        }
+
         nav {
             background-color: lighten($body, 5%);
             padding: 0.5rem;
