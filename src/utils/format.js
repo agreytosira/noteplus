@@ -1,16 +1,16 @@
 export const showFormattedDate = (date) => {
-  const options = {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  }
-  return new Date(date).toLocaleDateString('id-ID', options)
-}
+    const options = {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    };
+    return new Date(date).toLocaleDateString('id-ID', options);
+};
 
-export function generateSlug(kalimat) {
-  const cleanedString = kalimat.replace(/[^a-zA-Z0-9 ]/g, '')
-  const slug = cleanedString.toLowerCase().replace(/\s+/g, '-')
+export const generateSlug = (kalimat) => {
+    const cleanedString = kalimat.replace(/[^a-zA-Z0-9 ]/g, '');
+    const slug = cleanedString.toLowerCase().replace(/\s+/g, '-');
 
-  return slug
-}
+    return slug;
+};
