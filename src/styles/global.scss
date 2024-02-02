@@ -292,26 +292,31 @@ textarea {
     position: fixed;
     bottom: 1rem;
     right: 1rem;
-    width: 3.5rem;
-    height: 3.5rem;
-    border-radius: 50%;
-    background-color: $blue;
-    border: none;
-    aspect-ratio: 1/1;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
+    gap: 1rem;
 
-    &:hover {
-        background-color: darken($blue, 20%);
-    }
+    button {
+        width: 3.5rem;
+        height: 3.5rem;
+        border-radius: 50%;
+        background-color: $blue;
+        border: none;
+        aspect-ratio: 1/1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
 
-    svg {
-        width: 2rem;
-        height: 2rem;
-        color: white;
+        &:hover {
+            background-color: darken($blue, 20%);
+        }
+
+        svg {
+            width: 2rem;
+            height: 2rem;
+            color: white;
+        }
     }
 }
 

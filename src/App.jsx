@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { deleteNote, getAllNotes } from './utils/data';
+import { deleteNote, archiveNote, getAllNotes, unarchiveNote } from './utils/data';
 import FloatingButton from './components/FloatingButton';
 import NoteAddModal from './components/NoteAddModal';
 import Header from './components/Header';
@@ -27,9 +27,10 @@ export class NoteApp extends Component {
 
         this.toggleModalHandler = this.toggleModalHandler.bind(this);
         this.onAddNoteHandler = this.onAddNoteHandler.bind(this);
-        this.toggleArchivedHandler = this.toggleArchivedHandler.bind(this);
         this.onDeleteHandler = this.onDeleteHandler.bind(this);
         this.onSearchHandler = this.onSearchHandler.bind(this);
+        this.onArchiveHandler = this.onArchiveHandler.bind(this);
+        this.onUnarchiveHandler = this.onUnarchiveHandler.bind(this);
     }
 
     toggleModalHandler() {
@@ -51,6 +52,38 @@ export class NoteApp extends Component {
                         archived: false
                     }
                 ]
+            };
+        });
+    }
+
+    onArchiveHandler(id, title) {
+        Swal.fire({
+            title: 'Berhasil!',
+            text: `Catatan dengan judul ${title} telah diarsipkan`,
+            icon: 'success',
+            timer: 1000
+        });
+        archiveNote(id);
+        this.props.navigate(-1);
+        this.setState(() => {
+            return {
+                notes: getAllNotes()
+            };
+        });
+    }
+
+    onUnarchiveHandler(id, title) {
+        Swal.fire({
+            title: 'Berhasil!',
+            text: `Catatan dengan judul ${title} telah diaktifkan kembali`,
+            icon: 'success',
+            timer: 1000
+        });
+        unarchiveNote(id);
+        this.props.navigate(-1);
+        this.setState(() => {
+            return {
+                notes: getAllNotes()
             };
         });
     }
@@ -115,9 +148,9 @@ export class NoteApp extends Component {
             <>
                 <Header searchHandler={this.onSearchHandler} />
                 <Routes>
-                    <Route path='/' element={<HomePage notes={filteredNotes} toggleArchived={this.toggleArchivedHandler} />} />
-                    <Route path='/archived' element={<HomePage notes={filteredNotes} toggleArchived={this.toggleArchivedHandler} showArchived={true} />} />
-                    <Route path='/note/:id' element={<Detail onDelete={this.onDeleteHandler} />} />
+                    <Route path='/' element={<HomePage notes={filteredNotes} />} />
+                    <Route path='/archived' element={<HomePage notes={filteredNotes} showArchived={true} />} />
+                    <Route path='/note/:id' element={<Detail onDelete={this.onDeleteHandler} onArchive={this.onArchiveHandler} onUnarchive={this.onUnarchiveHandler} />} />
                 </Routes>
 
                 {/* <HomePage notes={filteredNotes} toggleArchived={this.toggleArchivedHandler} onDelete={this.onDeleteHandler} />

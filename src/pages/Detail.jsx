@@ -1,13 +1,13 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { getNote, deleteNote } from '../utils/data';
+import { getNote } from '../utils/data';
 import { Link } from 'react-router-dom';
 import { showFormattedDate } from '../utils/format';
 import FloatingButton from '../components/FloatingButton';
 
-function Detail({ onDelete }) {
+function Detail({ onDelete, onArchive, onUnarchive }) {
     const { id } = useParams();
-    const { title, body, createdAt } = getNote(id);
+    const { title, body, createdAt, archived } = getNote(id);
 
     return (
         <>
@@ -23,9 +23,7 @@ function Detail({ onDelete }) {
                     <span>Dibuat pada {showFormattedDate(createdAt)}</span>
                     <p>{body}</p>
                 </div>
-                <FloatingButton onDelete={onDelete} id={id} title={title}>
-                    Delete
-                </FloatingButton>
+                <FloatingButton archived={archived} onArchive={onArchive} onUnarchive={onUnarchive} onDelete={onDelete} id={id} title={title} />
             </main>
         </>
     );
