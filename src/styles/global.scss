@@ -339,6 +339,10 @@ textarea {
     }
 }
 
+.btn-delete {
+    background-color: $red !important;
+}
+
 .input {
     &-group {
         display: flex;
