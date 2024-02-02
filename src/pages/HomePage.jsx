@@ -13,10 +13,10 @@ function HomePage({ notes, toggleArchived, onDelete, showArchived }) {
                             <ul>
                                 <li>
                                     <Link to='/' className={!showArchived && 'active'}>
-                                        Home
+                                        Sedang Aktif
                                     </Link>
                                     <Link to='/archived' className={showArchived && 'active'}>
-                                        Archived
+                                        Diarsipkan
                                     </Link>
                                 </li>
                             </ul>
