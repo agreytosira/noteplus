@@ -1,5 +1,4 @@
 import React, { Component, useEffect, useState } from 'react';
-import { deleteNote, archiveNote, getAllNotes, unarchiveNote } from './utils/data';
 import FloatingButton from './components/FloatingButton';
 import NoteAddModal from './components/NoteAddModal';
 import Header from './components/Header';
@@ -36,7 +35,6 @@ export class NoteApp extends Component {
         super(props);
 
         this.state = {
-            notes: getAllNotes(),
             isModalOpen: false,
             searchKeyword: ''
         };
@@ -64,24 +62,6 @@ export class NoteApp extends Component {
                         archived: false
                     }
                 ]
-            };
-        });
-    }
-
-    toggleArchivedHandler(id) {
-        this.setState((prevState) => {
-            const updatedNotes = prevState.notes.map((note) => {
-                if (note.id === id) {
-                    return {
-                        ...note,
-                        archived: !note.archived
-                    };
-                }
-                return note;
-            });
-
-            return {
-                notes: updatedNotes
             };
         });
     }
