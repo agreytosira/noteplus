@@ -87,6 +87,16 @@ textarea {
 .note {
     margin-top: 100px;
 
+    &__status {
+        display: inline-flex;
+        font-size: 12px !important;
+        border: 1px solid $blue;
+        color: $blue !important;
+        padding: 0.25rem 0.5rem;
+        border-radius: 0.25rem;
+        margin-top: 0.5rem;
+    }
+
     &__container {
         h2 {
             margin-bottom: 1rem;

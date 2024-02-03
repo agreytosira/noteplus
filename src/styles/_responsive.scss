@@ -9,6 +9,11 @@
         &-list {
             grid-template-columns: repeat(2, 1fr);
         }
+
+        &__status {
+            margin-left: 0.5rem;
+            margin-top: 0;
+        }
     }
 }
 
