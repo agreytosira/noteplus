@@ -26,7 +26,7 @@ function Detail({ onDelete, onArchive, onUnarchive }) {
                     </button>
                     <h1>{title}</h1>
                     <span>Dibuat pada {showFormattedDate(createdAt)}</span>
-                    <span className='note__status'>{archived && 'Diarsipkan'}</span>
+                    {archived && <span className='note__status'>Diarsipkan</span>}
                     <p>{body}</p>
                 </div>
                 <FloatingButton archived={archived} onArchive={onArchive} onUnarchive={onUnarchive} onDelete={onDelete} id={id} title={title} />
