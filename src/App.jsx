@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import { deleteNote, archiveNote, getAllNotes, unarchiveNote } from './utils/data';
 import FloatingButton from './components/FloatingButton';
 import NoteAddModal from './components/NoteAddModal';
@@ -11,8 +11,24 @@ import ArchivedPage from './pages/ArchivedPage';
 
 function NoteAppWrapper() {
     const navigate = useNavigate();
+    const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
 
-    return <NoteApp navigate={navigate} />;
+    useEffect(() => {
+        document.body.classList.add(theme);
+
+        return () => {
+            document.body.classList.remove(theme);
+        };
+    }, [theme]);
+
+    const toggleTheme = () => {
+        const newTheme = theme === 'light' ? 'dark' : 'light';
+        setTheme(newTheme);
+
+        localStorage.setItem('theme', newTheme);
+    };
+
+    return <NoteApp navigate={navigate} theme={theme} toggleTheme={toggleTheme} />;
 }
 
 export class NoteApp extends Component {
@@ -71,9 +87,10 @@ export class NoteApp extends Component {
     }
 
     render() {
+        const { toggleTheme, theme } = this.props;
         return (
             <>
-                <Header />
+                <Header toggleTheme={toggleTheme} theme={theme} />
                 <Routes>
                     <Route path='/' element={<HomePage />} />
                     <Route path='/archived' element={<ArchivedPage />} />

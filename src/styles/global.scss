@@ -22,6 +22,7 @@ html {
 body {
     background-color: $body;
     color: $white;
+    transition: all 0.3s ease;
 }
 
 main {
@@ -63,6 +64,7 @@ textarea {
     top: 0;
     width: 100%;
     background-color: $body;
+    transition: all 0.3s ease;
 
     &__brand {
         font-size: 1.5rem;
@@ -429,6 +431,19 @@ textarea {
     svg {
         width: 1rem;
         height: 1rem;
+    }
+}
+
+.btn-theme {
+    background: none;
+    outline: none;
+    border: none;
+    cursor: pointer;
+
+    svg {
+        width: 1.5rem;
+        height: 1.5rem;
+        color: $white;
     }
 }
 
