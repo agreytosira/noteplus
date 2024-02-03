@@ -131,7 +131,6 @@ textarea {
         display: flex;
         justify-content: space-between;
         flex-direction: column;
-        margin-bottom: 2rem;
 
         nav {
             background-color: lighten($body, 5%);
@@ -434,8 +433,9 @@ textarea {
     display: flex;
     align-items: center;
     width: auto;
+    margin: 1rem 0;
     margin-left: auto;
-    width: 50%;
+    width: 100%;
     border: 1px solid $grey;
     border-radius: 0.25rem;
     padding: 0 0.5rem;

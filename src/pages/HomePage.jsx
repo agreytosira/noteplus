@@ -1,8 +1,9 @@
 import React from 'react';
 import NoteList from '../components/NoteList';
 import { Link } from 'react-router-dom';
+import SearchBar from '../components/SearchBar';
 
-function HomePage({ notes, showArchived }) {
+function HomePage({ notes, showArchived, searchHandler }) {
     return (
         <>
             <main className='note'>
@@ -24,6 +25,7 @@ function HomePage({ notes, showArchived }) {
                             </ul>
                         </nav>
                     </div>
+                    <SearchBar searchHandler={searchHandler} />
                     <NoteList notes={notes} showArchived={showArchived} />
                 </section>
             </main>

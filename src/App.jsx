@@ -146,16 +146,12 @@ export class NoteApp extends Component {
 
         return (
             <>
-                <Header searchHandler={this.onSearchHandler} />
+                <Header />
                 <Routes>
-                    <Route path='/' element={<HomePage notes={filteredNotes} />} />
-                    <Route path='/archived' element={<HomePage notes={filteredNotes} showArchived={true} />} />
+                    <Route path='/' element={<HomePage notes={filteredNotes} searchHandler={this.onSearchHandler} />} />
+                    <Route path='/archived' element={<HomePage notes={filteredNotes} searchHandler={this.onSearchHandler} showArchived={true} />} />
                     <Route path='/note/:id' element={<Detail onDelete={this.onDeleteHandler} onArchive={this.onArchiveHandler} onUnarchive={this.onUnarchiveHandler} />} />
                 </Routes>
-
-                {/* <HomePage notes={filteredNotes} toggleArchived={this.toggleArchivedHandler} onDelete={this.onDeleteHandler} />
-                <FloatingButton toggleHandler={this.toggleModalHandler} />
-                {this.state.isModalOpen && <NoteAddModal addNote={this.onAddNoteHandler} closeHandler={this.toggleModalHandler} />} */}
 
                 <Footer />
             </>

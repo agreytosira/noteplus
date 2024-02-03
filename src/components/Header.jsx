@@ -1,8 +1,7 @@
 import React from 'react';
-import SearchBar from './SearchBar';
 import { Link } from 'react-router-dom';
 
-function Header({ searchHandler }) {
+function Header() {
     return (
         <header className='header'>
             <div className='container header__container'>
@@ -11,7 +10,6 @@ function Header({ searchHandler }) {
                         Note<span>Plus</span>
                     </Link>
                 </h1>
-                <SearchBar searchHandler={searchHandler} />
             </div>
         </header>
     );
