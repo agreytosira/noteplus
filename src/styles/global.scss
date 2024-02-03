@@ -1,6 +1,8 @@
 $white: #eaeaea;
+$bodyLight: #fafafa;
 $secondaryText: rgba($white, 0.75);
 $grey: #7c7c7c;
+$borderLight: #b4b4b4;
 $body: #0a192f;
 $blue: #005bfc;
 $red: #cf3636;
@@ -458,3 +460,4 @@ textarea {
 }
 
 @import './responsive';
+@import './light-mode';
