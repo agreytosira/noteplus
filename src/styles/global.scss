@@ -79,15 +79,6 @@ textarea {
         display: flex;
         align-items: center;
         justify-content: space-between;
-
-        input {
-            width: 50%;
-            font-weight: 600;
-
-            &::placeholder {
-                font-weight: 600;
-            }
-        }
     }
 }
 
@@ -421,6 +412,32 @@ textarea {
 
     &:hover {
         color: $blue;
+    }
+
+    svg {
+        width: 1rem;
+        height: 1rem;
+    }
+}
+
+.searchbar {
+    display: flex;
+    align-items: center;
+    width: auto;
+    margin-left: auto;
+    width: 50%;
+    border: 1px solid $grey;
+    border-radius: 0.25rem;
+    padding: 0 0.5rem;
+    padding-right: 0;
+
+    input[type='search'] {
+        border: none;
+        width: 100% !important;
+
+        &:focus {
+            outline: none;
+        }
     }
 
     svg {

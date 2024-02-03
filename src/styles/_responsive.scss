@@ -3,12 +3,6 @@
         &__brand {
             font-size: 2rem;
         }
-
-        &__container {
-            input {
-                width: 30%;
-            }
-        }
     }
 
     .note {
@@ -56,6 +50,9 @@
         &-detail__container {
             max-width: 50%;
         }
+    }
+    .searchbar {
+        width: 30%;
     }
 }
 
