@@ -28,6 +28,7 @@
         &__navigation {
             flex-direction: row;
             align-items: center;
+            font-size: 14px;
 
             h2 {
                 margin-bottom: 0;
@@ -55,9 +56,6 @@
         &-detail__container {
             max-width: 50%;
         }
-    }
-    .searchbar {
-        width: 30%;
     }
 }
 
