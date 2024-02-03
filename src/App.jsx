@@ -28,7 +28,6 @@ export class NoteApp extends Component {
         this.toggleModalHandler = this.toggleModalHandler.bind(this);
         this.onAddNoteHandler = this.onAddNoteHandler.bind(this);
         this.onDeleteHandler = this.onDeleteHandler.bind(this);
-        this.onSearchHandler = this.onSearchHandler.bind(this);
         this.onArchiveHandler = this.onArchiveHandler.bind(this);
         this.onUnarchiveHandler = this.onUnarchiveHandler.bind(this);
     }
@@ -133,23 +132,12 @@ export class NoteApp extends Component {
         });
     }
 
-    onSearchHandler(keyword) {
-        this.setState(() => {
-            return {
-                searchKeyword: keyword
-            };
-        });
-    }
-
     render() {
-        const filteredNotes = this.state.notes.filter((note) => note.title.toLowerCase().includes(this.state.searchKeyword.toLowerCase()));
-
         return (
             <>
                 <Header />
                 <Routes>
-                    <Route path='/' element={<HomePage notes={filteredNotes} searchHandler={this.onSearchHandler} />} />
-                    <Route path='/archived' element={<HomePage notes={filteredNotes} searchHandler={this.onSearchHandler} showArchived={true} />} />
+                    <Route path='/' element={<HomePage />} />
                     <Route path='/note/:id' element={<Detail onDelete={this.onDeleteHandler} onArchive={this.onArchiveHandler} onUnarchive={this.onUnarchiveHandler} />} />
                 </Routes>
 
