@@ -8,6 +8,7 @@ import Footer from './components/Footer';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import Detail from './pages/Detail';
 import Swal from 'sweetalert2';
+import ArchivedPage from './pages/ArchivedPage';
 
 function NoteAppWrapper() {
     const navigate = useNavigate();
@@ -138,6 +139,7 @@ export class NoteApp extends Component {
                 <Header />
                 <Routes>
                     <Route path='/' element={<HomePage />} />
+                    <Route path='/archived' element={<ArchivedPage />} />
                     <Route path='/note/:id' element={<Detail onDelete={this.onDeleteHandler} onArchive={this.onArchiveHandler} onUnarchive={this.onUnarchiveHandler} />} />
                 </Routes>
 
