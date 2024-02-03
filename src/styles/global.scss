@@ -190,6 +190,7 @@ textarea {
         text-decoration: none;
 
         &:hover {
+            border: 1px solid $white;
             background-color: lighten($color: $body, $amount: 5%);
         }
 
