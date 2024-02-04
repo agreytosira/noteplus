@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Swal from 'sweetalert2'
 
-class NoteAddModal extends Component {
+class AddNodeModal extends Component {
   constructor(props) {
     super(props)
 
@@ -34,10 +34,7 @@ class NoteAddModal extends Component {
 
   onSubmitEventHandler(event) {
     event.preventDefault()
-    this.props.addNote({
-      title: this.state.title,
-      body: this.state.body
-    })
+    this.props.onAddNote(this.state)
 
     Swal.fire({
       title: 'Berhasil Tambah Catatan',
@@ -45,7 +42,7 @@ class NoteAddModal extends Component {
       icon: 'success',
       timer: 1000
     })
-    this.props.closeHandler()
+    this.props.closeModalHandler()
   }
 
   render() {
@@ -69,7 +66,7 @@ class NoteAddModal extends Component {
               Tambah Catatan
             </button>
           </form>
-          <button className='close-button' onClick={this.props.closeHandler}>
+          <button className='close-button' onClick={this.props.closeModalHandler}>
             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'>
               <path d='M11.9997 10.5865L16.9495 5.63672L18.3637 7.05093L13.4139 12.0007L18.3637 16.9504L16.9495 18.3646L11.9997 13.4149L7.04996 18.3646L5.63574 16.9504L10.5855 12.0007L5.63574 7.05093L7.04996 5.63672L11.9997 10.5865Z'></path>
             </svg>
@@ -80,4 +77,4 @@ class NoteAddModal extends Component {
   }
 }
 
-export default NoteAddModal
+export default AddNodeModal
