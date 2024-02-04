@@ -1,101 +1,112 @@
 body.light {
-    color: $body;
+  color: $body;
+  background-color: $bodyLight;
+
+  // Header
+  .header {
     background-color: $bodyLight;
+    border-bottom: 1px solid $borderLight;
 
-    // Header
-    .header {
-        background-color: $bodyLight;
-        border-bottom: 1px solid $borderLight;
-
-        &__brand {
-            a {
-                color: $body;
-            }
-        }
-    }
-
-    // Searchbar
-    .searchbar {
-        border: 1px solid $borderLight;
-
-        input {
-            color: $body;
-        }
-    }
-
-    // Note
-    .note {
-        &__navigation {
-            nav {
-                background-color: darken($bodyLight, 5%);
-
-                ul {
-                    li {
-                        a {
-                            color: $body;
-
-                            &.active {
-                                color: $bodyLight;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        &-detail {
-            p {
-                color: rgba($color: $body, $alpha: 0.75);
-            }
-        }
-
-        &-item {
-            border: 1px solid $borderLight;
-
-            &__title {
-                color: $body;
-            }
-
-            &__content {
-                color: rgba($color: $body, $alpha: 0.75);
-            }
-
-            &:hover {
-                background-color: darken($color: $bodyLight, $amount: 5%);
-                border: 1px solid $grey;
-            }
-        }
-    }
-
-    // Footer
-    .footer {
-        border-top: 1px solid $borderLight;
-
-        p {
-            color: $body;
-        }
-    }
-
-    .btn-link {
+    &__brand {
+      a {
         color: $body;
-        transition: all 0.3s ease;
+      }
+    }
+  }
 
-        &:hover {
-            color: $blue;
+  // Searchbar
+  .searchbar {
+    border: 1px solid $borderLight;
+
+    input {
+      color: $body;
+    }
+  }
+
+  // Note
+  .note {
+    &__navigation {
+      nav {
+        background-color: darken($bodyLight, 5%);
+
+        ul {
+          li {
+            a {
+              color: $body;
+
+              &.active {
+                color: $bodyLight;
+              }
+            }
+          }
         }
+      }
     }
 
-    .btn-theme {
-        svg {
-            color: $body;
+    &-detail {
+      p {
+        color: rgba($color: $body, $alpha: 0.75);
+      }
+    }
+
+    &-modal {
+      &__container {
+        background-color: $bodyLight;
+
+        input,
+        textarea {
+          color: $body;
         }
+      }
     }
 
-    .swal2-popup,
-    .swal2-success-circular-line-right,
-    .swal2-success-circular-line-left,
-    .swal2-success-fix {
-        background: lighten($color: $bodyLight, $amount: 5%) !important;
-        color: $body !important;
+    &-item {
+      border: 1px solid $borderLight;
+
+      &__title {
+        color: $body;
+      }
+
+      &__content {
+        color: rgba($color: $body, $alpha: 0.75);
+      }
+
+      &:hover {
+        background-color: darken($color: $bodyLight, $amount: 5%);
+        border: 1px solid $grey;
+      }
     }
+  }
+
+  // Footer
+  .footer {
+    border-top: 1px solid $borderLight;
+
+    p {
+      color: $body;
+    }
+  }
+
+  .btn-link {
+    color: $body;
+    transition: all 0.3s ease;
+
+    &:hover {
+      color: $blue;
+    }
+  }
+
+  .btn-theme {
+    svg {
+      color: $body;
+    }
+  }
+
+  .swal2-popup,
+  .swal2-success-circular-line-right,
+  .swal2-success-circular-line-left,
+  .swal2-success-fix {
+    background: lighten($color: $bodyLight, $amount: 5%) !important;
+    color: $body !important;
+  }
 }
