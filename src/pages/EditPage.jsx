@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { editNote, getNote } from '../utils/data';
 import FloatingButton from '../components/FloatingButton';
@@ -13,7 +13,7 @@ function EditPageWrapper() {
 
     return (
         <>
-            <EditPage navigate={navigate} id={id} note={note} title={title} body={body} />
+            <EditPage navigate={navigate} id={id} note={note} title={title} body={body} useRef={useRef} />
         </>
     );
 }
@@ -29,9 +29,16 @@ export class EditPage extends Component {
             newBody: props.body
         };
 
+        this.titleInputRef = React.createRef();
         this.onSaveEditHandler = this.onSaveEditHandler.bind(this);
         this.onChangeTitleHandler = this.onChangeTitleHandler.bind(this);
         this.onChangeBodyHandler = this.onChangeBodyHandler.bind(this);
+    }
+
+    componentDidMount() {
+        if (this.titleInputRef.current) {
+            this.titleInputRef.current.focus();
+        }
     }
 
     onSaveEditHandler() {
@@ -80,7 +87,7 @@ export class EditPage extends Component {
                 <main className='note-detail'>
                     <div className='note-detail__container container'>
                         <span className='pages-info'>UBAH CATATAN</span>
-                        <div className='note-input__title' contentEditable onInput={this.onChangeTitleHandler} dangerouslySetInnerHTML={{ __html: !newTitle ? title : newTitle }} />
+                        <div className='note-input__title' contentEditable onInput={this.onChangeTitleHandler} ref={this.titleInputRef} dangerouslySetInnerHTML={{ __html: !newTitle ? title : newTitle }} />
                         <div className='note-input__body' contentEditable onInput={this.onChangeBodyHandler} dangerouslySetInnerHTML={{ __html: !newBody ? body : newBody }} />
                     </div>
                     <FloatingButton id={id} newTitle={newTitle} newBody={newBody} title={title} onSaveEdit={this.onSaveEditHandler} />
