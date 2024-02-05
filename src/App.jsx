@@ -1,12 +1,11 @@
 import React, { Component, useEffect, useState } from 'react';
-import FloatingButton from './components/FloatingButton';
-import AddNodeModal from './components/AddNodeModal';
 import Header from './components/Header';
 import HomePage from './pages/HomePage';
 import Footer from './components/Footer';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import DetailPage from './pages/DetailPage';
 import ArchivedPage from './pages/ArchivedPage';
+import EditPage from './pages/EditPage';
 
 function NoteAppWrapper() {
     const navigate = useNavigate();
@@ -40,6 +39,7 @@ export class NoteApp extends Component {
                     <Route path='/' element={<HomePage />} />
                     <Route path='/archived' element={<ArchivedPage />} />
                     <Route path='/note/:id' element={<DetailPage />} />
+                    <Route path='/edit/:id' element={<EditPage />} />
                 </Routes>
                 <Footer />
             </>
