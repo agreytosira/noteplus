@@ -1,4 +1,4 @@
-import React, { Component, useRef } from 'react';
+import React, { Component } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { editNote, getNote } from '../utils/data';
 import FloatingButton from '../components/FloatingButton';
@@ -13,7 +13,7 @@ function EditPageWrapper() {
 
     return (
         <>
-            <EditPage navigate={navigate} id={id} note={note} title={title} body={body} useRef={useRef} />
+            <EditPage navigate={navigate} id={id} note={note} title={title} body={body} />
         </>
     );
 }
