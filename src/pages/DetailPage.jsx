@@ -1,13 +1,12 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getNote } from '../utils/data';
-import { Link } from 'react-router-dom';
 import { showFormattedDate } from '../utils/format';
 import FloatingButton from '../components/FloatingButton';
 import Swal from 'sweetalert2';
 import { archiveNote, unarchiveNote, deleteNote } from '../utils/data';
 
-function Detail() {
+function DetailPage() {
     const { id } = useParams();
     const { title, body, createdAt, archived } = getNote(id);
     const navigate = useNavigate();
@@ -81,4 +80,4 @@ function Detail() {
     );
 }
 
-export default Detail;
+export default DetailPage;
