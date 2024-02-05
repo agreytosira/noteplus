@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { editNote, getNote } from '../utils/data';
 import FloatingButton from '../components/FloatingButton';
 import Swal from 'sweetalert2';
+import JoditEditor from 'jodit-react';
 
 function EditPageWrapper() {
     const { id } = useParams();
@@ -28,7 +29,7 @@ export class EditPage extends Component {
             newTitle: props.title,
             newBody: props.body
         };
-
+        this.editorRef = React.createRef();
         this.titleInputRef = React.createRef();
         this.onSaveEditHandler = this.onSaveEditHandler.bind(this);
         this.onChangeTitleHandler = this.onChangeTitleHandler.bind(this);
@@ -43,12 +44,9 @@ export class EditPage extends Component {
     }
 
     onSaveEditHandler() {
-        let { id, newTitle, newBody, note } = this.state;
+        const { id, newTitle, newBody } = this.state;
 
         if (newTitle === '' || newBody === '') {
-            newTitle = note.title;
-            newBody = note.body;
-
             Swal.fire({
                 title: 'Isi Judul dan Isi Catatan',
                 text: `Judul dan isi catatan tidak boleh kosong!`,
@@ -75,9 +73,12 @@ export class EditPage extends Component {
     }
 
     onChangeBodyHandler(event) {
-        const newBody = event.target.innerHTML;
-        this.setState({ newBody });
-        console.log(newBody);
+        if (this.editorRef.current) {
+            const editorValue = this.editorRef.current.value;
+            const newBody = editorValue;
+            this.setState({ newBody });
+            console.log(newBody);
+        }
     }
 
     onCancelHandler(id) {
@@ -93,7 +94,7 @@ export class EditPage extends Component {
                     <div className='note-detail__container container'>
                         <span className='pages-info'>UBAH CATATAN</span>
                         <div className='note-input__title' contentEditable onInput={this.onChangeTitleHandler} ref={this.titleInputRef} dangerouslySetInnerHTML={{ __html: !newTitle ? title : newTitle }} />
-                        <div className='note-input__body' contentEditable onInput={this.onChangeBodyHandler} dangerouslySetInnerHTML={{ __html: !newBody ? body : newBody }} />
+                        <JoditEditor ref={this.editorRef} value={!newBody ? body : newBody} onChange={this.onChangeBodyHandler} />
                     </div>
                     <FloatingButton id={id} newTitle={newTitle} newBody={newBody} title={title} onSaveEdit={this.onSaveEditHandler} onCancel={this.onCancelHandler} />
                 </main>

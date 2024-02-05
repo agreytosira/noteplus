@@ -94,6 +94,7 @@ textarea {
     &-input {
         &__title {
             margin-top: 1rem;
+            margin-bottom: 0.5rem;
             font-size: 3rem;
             font-weight: 700;
         }
@@ -514,6 +515,12 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
     letter-spacing: 0.25rem;
     font-weight: 600;
     color: $blue !important;
+}
+
+.jodit-wysiwyg {
+    p {
+        margin-top: 0;
+    }
 }
 
 @import './responsive';

@@ -5,6 +5,7 @@ import { showFormattedDate } from '../utils/format';
 import FloatingButton from '../components/FloatingButton';
 import Swal from 'sweetalert2';
 import { archiveNote, unarchiveNote, deleteNote } from '../utils/data';
+import parser from 'html-react-parser';
 
 function DetailPage() {
     const { id } = useParams();
@@ -76,7 +77,7 @@ function DetailPage() {
                     <h1>{title}</h1>
                     <span>Dibuat pada {showFormattedDate(createdAt)}</span>
                     {archived && <span className='note__status'>Diarsipkan</span>}
-                    <p>{body}</p>
+                    <p>{parser(body)}</p>
                 </div>
                 <FloatingButton archived={archived} onArchive={onArchiveHandler} onUnarchive={onUnarchiveHandler} onDelete={onDeleteHandler} id={id} title={title} onEdit={onEditHandler} />
             </main>
