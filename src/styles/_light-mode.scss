@@ -52,6 +52,11 @@ body.light {
             p {
                 color: rgba($color: $body, $alpha: 0.75);
             }
+            ol,
+            ul,
+            li {
+                color: rgba($color: $body, $alpha: 0.75) !important;
+            }
         }
 
         &-modal {
@@ -113,5 +118,39 @@ body.light {
     .swal2-success-fix {
         background: lighten($color: $bodyLight, $amount: 5%) !important;
         color: $body !important;
+    }
+
+    // Jodit Editor
+
+    .jodit {
+        &-status-bar {
+            background-color: $bodyLight;
+            color: $body;
+        }
+
+        &-status-bar-link {
+            color: $body !important;
+        }
+
+        &-icon {
+            fill: $body;
+        }
+
+        &-toolbar__box:not(:empty):not(:empty) {
+            background-color: $bodyLight;
+            color: $body !important;
+        }
+
+        &-wysiwyg {
+            background-color: $bodyLight;
+
+            ol,
+            li {
+                color: $secondaryText;
+            }
+            p {
+                margin-top: 0;
+            }
+        }
     }
 }

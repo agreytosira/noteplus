@@ -127,6 +127,11 @@ textarea {
         margin-top: 100px;
         margin-bottom: 50px;
 
+        ol,
+        ul {
+            margin-left: 2rem;
+        }
+
         &__container {
             h1 {
                 margin-top: 1rem;
@@ -517,7 +522,33 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
     color: $blue !important;
 }
 
+// Jodit Editor
+
+.jodit-status-bar {
+    background-color: $body;
+    color: $white;
+}
+
+.jodit-status-bar-link {
+    color: $white !important;
+}
+
+.jodit-icon {
+    fill: $white;
+}
+
+.jodit-toolbar__box:not(:empty):not(:empty) {
+    background-color: $body;
+    color: $white !important;
+}
+
 .jodit-wysiwyg {
+    background-color: $body;
+
+    ol,
+    li {
+        color: $secondaryText;
+    }
     p {
         margin-top: 0;
     }
