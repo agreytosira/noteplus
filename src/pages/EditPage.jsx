@@ -33,6 +33,7 @@ export class EditPage extends Component {
         this.onSaveEditHandler = this.onSaveEditHandler.bind(this);
         this.onChangeTitleHandler = this.onChangeTitleHandler.bind(this);
         this.onChangeBodyHandler = this.onChangeBodyHandler.bind(this);
+        this.onCancelHandler = this.onCancelHandler.bind(this);
     }
 
     componentDidMount() {
@@ -79,6 +80,10 @@ export class EditPage extends Component {
         console.log(newBody);
     }
 
+    onCancelHandler(id) {
+        this.props.navigate(`/note/${id}`);
+    }
+
     render() {
         const { id, newTitle, newBody, title, body } = this.state.note;
 
@@ -90,7 +95,7 @@ export class EditPage extends Component {
                         <div className='note-input__title' contentEditable onInput={this.onChangeTitleHandler} ref={this.titleInputRef} dangerouslySetInnerHTML={{ __html: !newTitle ? title : newTitle }} />
                         <div className='note-input__body' contentEditable onInput={this.onChangeBodyHandler} dangerouslySetInnerHTML={{ __html: !newBody ? body : newBody }} />
                     </div>
-                    <FloatingButton id={id} newTitle={newTitle} newBody={newBody} title={title} onSaveEdit={this.onSaveEditHandler} />
+                    <FloatingButton id={id} newTitle={newTitle} newBody={newBody} title={title} onSaveEdit={this.onSaveEditHandler} onCancel={this.onCancelHandler} />
                 </main>
             </>
         );
