@@ -35,7 +35,7 @@ export class EditPage extends Component {
     }
 
     onSaveEditHandler() {
-        const { id, newTitle, newBody, note } = this.state;
+        let { id, newTitle, newBody, note } = this.state;
 
         if (newTitle === '' || newBody === '') {
             newTitle = note.title;
