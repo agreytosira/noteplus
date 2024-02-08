@@ -554,5 +554,15 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
     }
 }
 
+.jodit-popup__content {
+    background-color: $body;
+    color: $white;
+
+    .jodit-ui-button__text {
+        color: $white;
+        font-weight: 600;
+    }
+}
+
 @import './responsive';
 @import './light-mode';

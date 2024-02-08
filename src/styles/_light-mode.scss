@@ -152,5 +152,14 @@ body.light {
                 margin-top: 0;
             }
         }
+
+        &-popup__content {
+            background-color: $bodyLight;
+            color: $body;
+        }
+        &-ui-button__text {
+            color: $body;
+            font-weight: 600;
+        }
     }
 }
