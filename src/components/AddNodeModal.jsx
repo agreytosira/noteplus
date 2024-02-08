@@ -35,14 +35,13 @@ class AddNodeModal extends Component {
     onSubmitEventHandler(event) {
         event.preventDefault();
         this.props.onAddNote(this.state);
-
+        this.props.closeModalHandler();
         Swal.fire({
             title: 'Berhasil Tambah Catatan',
             text: `Catatan dengan judul ${this.state.title} berhasil ditambahkan`,
             icon: 'success',
             timer: 1000
         });
-        this.props.closeModalHandler();
     }
 
     render() {

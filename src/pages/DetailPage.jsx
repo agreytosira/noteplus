@@ -17,25 +17,25 @@ function DetailPage() {
     };
 
     const onArchiveHandler = (id, title) => {
+        archiveNote(id);
+        navigate('/archived');
         Swal.fire({
             title: 'Berhasil Arsipkan Catatan!',
             text: `Catatan dengan judul ${title} telah diarsipkan`,
             icon: 'success',
             timer: 1000
         });
-        archiveNote(id);
-        navigate('/archived');
     };
 
     const onUnarchiveHandler = (id, title) => {
+        unarchiveNote(id);
+        navigate('/');
         Swal.fire({
             title: 'Berhasil Aktifkan Catatan!',
             text: `Catatan dengan judul ${title} telah diaktifkan kembali`,
             icon: 'success',
             timer: 1000
         });
-        unarchiveNote(id);
-        navigate('/');
     };
 
     const onDeleteHandler = (id, title) => {
