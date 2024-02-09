@@ -6,6 +6,7 @@ import { Routes, Route, useNavigate } from 'react-router-dom';
 import DetailPage from './pages/DetailPage';
 import ArchivedPage from './pages/ArchivedPage';
 import EditPage from './pages/EditPage';
+import AddPage from './pages/AddPage';
 
 function NoteAppWrapper() {
     const navigate = useNavigate();
@@ -40,6 +41,7 @@ export class NoteApp extends Component {
                     <Route path='/archived' element={<ArchivedPage />} />
                     <Route path='/note/:id' element={<DetailPage />} />
                     <Route path='/edit/:id' element={<EditPage />} />
+                    <Route path='/add' element={<AddPage />} />
                 </Routes>
                 <Footer />
             </>

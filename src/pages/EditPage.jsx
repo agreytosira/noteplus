@@ -19,7 +19,7 @@ function EditPageWrapper() {
     );
 }
 
-export class EditPage extends Component {
+class EditPage extends Component {
     constructor(props) {
         super(props);
 
@@ -48,7 +48,7 @@ export class EditPage extends Component {
 
         if (newTitle === '' || newBody === '') {
             Swal.fire({
-                title: 'Isi Judul dan Isi Catatan',
+                title: 'Isi Judul dan Catatan',
                 text: `Judul dan isi catatan tidak boleh kosong!`,
                 icon: 'warning',
                 timer: 1000
@@ -69,7 +69,6 @@ export class EditPage extends Component {
     onChangeTitleHandler(event) {
         const newTitle = event.target.innerHTML;
         this.setState({ newTitle });
-        console.log(newTitle);
     }
 
     onChangeBodyHandler(event) {
@@ -77,7 +76,6 @@ export class EditPage extends Component {
             const editorValue = this.editorRef.current.value;
             const newBody = editorValue;
             this.setState({ newBody });
-            console.log(newBody);
         }
     }
 
