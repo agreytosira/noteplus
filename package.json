@@ -13,6 +13,7 @@
     "dependencies": {
         "html-react-parser": "^5.1.1",
         "jodit-react": "^4.0.9",
+        "prop-types": "^15.8.1",
         "react": "^18.0.0",
         "react-contenteditable": "^3.3.7",
         "react-dom": "^18.0.0",

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 function Header({ toggleTheme, theme }) {
     return (
@@ -25,5 +26,10 @@ function Header({ toggleTheme, theme }) {
         </header>
     );
 }
+
+Header.propTypes = {
+    toggleTheme: PropTypes.func.isRequired,
+    theme: PropTypes.string.isRequired
+};
 
 export default Header;

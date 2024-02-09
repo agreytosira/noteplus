@@ -4,6 +4,7 @@ import { editNote, getNote } from '../utils/data';
 import FloatingButton from '../components/FloatingButton';
 import Swal from 'sweetalert2';
 import JoditEditor from 'jodit-react';
+import PropTypes from 'prop-types';
 
 function EditPageWrapper() {
     const { id } = useParams();
@@ -100,5 +101,13 @@ class EditPage extends Component {
         );
     }
 }
+
+EditPage.propTypes = {
+    navigate: PropTypes.func.isRequired,
+    id: PropTypes.string.isRequired,
+    note: PropTypes.object.isRequired,
+    title: PropTypes.string.isRequired,
+    body: PropTypes.string.isRequired
+};
 
 export default EditPageWrapper;

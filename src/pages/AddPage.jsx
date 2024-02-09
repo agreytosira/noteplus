@@ -5,13 +5,14 @@ import FloatingButton from '../components/FloatingButton';
 import Swal from 'sweetalert2';
 import JoditEditor from 'jodit-react';
 import ContentEditable from 'react-contenteditable';
+import PropTypes from 'prop-types';
 
 function AddPageWrapper() {
     const navigate = useNavigate();
 
     return (
         <>
-            <AddPage navigate={navigate} coba={true} />
+            <AddPage navigate={navigate} />
         </>
     );
 }
@@ -97,5 +98,9 @@ class AddPage extends Component {
         );
     }
 }
+
+AddPage.propTypes = {
+    navigate: PropTypes.func.isRequired
+};
 
 export default AddPageWrapper;

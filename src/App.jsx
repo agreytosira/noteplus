@@ -8,6 +8,7 @@ import ArchivedPage from './pages/ArchivedPage';
 import EditPage from './pages/EditPage';
 import AddPage from './pages/AddPage';
 import NotFound from './components/NotFound';
+import PropTypes from 'prop-types';
 
 function NoteAppWrapper() {
     const navigate = useNavigate();
@@ -50,5 +51,11 @@ export class NoteApp extends Component {
         );
     }
 }
+
+NoteApp.propTypes = {
+    navigate: PropTypes.func.isRequired,
+    theme: PropTypes.string.isRequired,
+    toggleTheme: PropTypes.func.isRequired
+};
 
 export default NoteAppWrapper;

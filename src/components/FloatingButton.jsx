@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-function FloatingButton({ onCancel, id, onEdit, title, onAdd, onAddLink, onSaveEdit, onDelete, onArchive, onUnarchive, archived }) {
+function FloatingButton({ onCancel, id, onEdit, title, onAdd, isAddLink, onSaveEdit, onDelete, onArchive, onUnarchive, archived }) {
     return (
         <>
             <div className='floating-button'>
@@ -54,7 +55,7 @@ function FloatingButton({ onCancel, id, onEdit, title, onAdd, onAddLink, onSaveE
                     </button>
                 )}
 
-                {onAddLink && (
+                {isAddLink && (
                     <Link to='/add' title='Tambahkan' className='btn-add'>
                         <button>
                             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'>
@@ -75,5 +76,19 @@ function FloatingButton({ onCancel, id, onEdit, title, onAdd, onAddLink, onSaveE
         </>
     );
 }
+
+FloatingButton.propTypes = {
+    onCancel: PropTypes.func,
+    id: PropTypes.string,
+    onEdit: PropTypes.func,
+    title: PropTypes.string,
+    onAdd: PropTypes.func,
+    isAddLink: PropTypes.bool,
+    onSaveEdit: PropTypes.func,
+    onDelete: PropTypes.func,
+    onArchive: PropTypes.func,
+    onUnarchive: PropTypes.func,
+    archived: PropTypes.bool
+};
 
 export default FloatingButton;

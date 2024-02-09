@@ -4,6 +4,7 @@ import { useSearchParams, Link } from 'react-router-dom';
 import SearchBar from '../components/SearchBar';
 import { getActiveNotes } from '../utils/data';
 import FloatingButton from '../components/FloatingButton';
+import PropTypes from 'prop-types';
 
 function HomePageWrapper() {
     const [searchParams, setSearchParams] = useSearchParams();
@@ -63,10 +64,15 @@ export class HomePage extends Component {
                         <NoteList notes={filteredNotes} />
                     </section>
                 </main>
-                <FloatingButton onAddLink={true} />
+                <FloatingButton isAddLink={true} />
             </>
         );
     }
 }
+
+HomePage.propTypes = {
+    defaultKeyword: PropTypes.string,
+    keywordChange: PropTypes.func.isRequired
+};
 
 export default HomePageWrapper;
