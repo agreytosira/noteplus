@@ -59,17 +59,6 @@ body.light {
             }
         }
 
-        &-modal {
-            &__container {
-                background-color: $bodyLight;
-
-                input,
-                textarea {
-                    color: $body;
-                }
-            }
-        }
-
         &-item {
             border: 1px solid $borderLight;
 

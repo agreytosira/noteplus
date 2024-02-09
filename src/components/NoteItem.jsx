@@ -1,6 +1,5 @@
 import React from 'react';
 import { showFormattedDate } from '../utils/format';
-import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom';
 
 function NoteItem({ id, title, body, createdAt }) {
