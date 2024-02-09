@@ -511,5 +511,29 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
     }
 }
 
+.notfound__container {
+    min-height: 50dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    h1 {
+        font-size: 3rem;
+    }
+
+    p {
+        margin-top: 0.25rem;
+        color: $secondaryText;
+        margin-bottom: 1rem;
+    }
+
+    a {
+        display: inline-block;
+        width: auto;
+        text-decoration: none;
+    }
+}
+
 @import './responsive';
 @import './light-mode';
