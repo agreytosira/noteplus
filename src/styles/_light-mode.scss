@@ -12,6 +12,18 @@ body.light {
                 color: $body;
             }
         }
+
+        &__logout {
+            background-color: darken($bodyLight, 5%);
+        }
+    }
+
+    .btn-logout {
+        color: $body;
+
+        &:hover {
+            color: $blue;
+        }
     }
 
     // Searchbar
