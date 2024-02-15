@@ -74,10 +74,6 @@ function DetailPage() {
         });
     };
 
-    if (loading) {
-        return <p>Loading...</p>;
-    }
-
     return (
         <>
             <main className='note-detail'>
@@ -88,10 +84,18 @@ function DetailPage() {
                         </svg>{' '}
                         Kembali ke Halaman Utama
                     </button>
-                    <h1>{title}</h1>
-                    <span>Dibuat pada {showFormattedDate(createdAt)}</span>
-                    {archived && <span className='note__status'>Diarsipkan</span>}
-                    {body && <div className='note-detail__body'>{parser(body)}</div>}
+                    {!loading ? (
+                        <>
+                            <h1>{title}</h1>
+                            <span>Dibuat pada {showFormattedDate(createdAt)}</span>
+                            {archived && <span className='note__status'>Diarsipkan</span>}
+                            {body && <div className='note-detail__body'>{parser(body)}</div>}
+                        </>
+                    ) : (
+                        <div className='loader__container'>
+                            <div className='loader'></div>
+                        </div>
+                    )}
                 </div>
                 <FloatingButton archived={archived} onArchive={onArchiveHandler} onUnarchive={onUnarchiveHandler} onDelete={onDeleteHandler} id={id} title={title} />
             </main>
