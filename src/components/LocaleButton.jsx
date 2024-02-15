@@ -6,7 +6,7 @@ function LocaleButton() {
 
     return (
         <button className='btn-language' onClick={toggleLocale}>
-            {locale === 'id' ? <img src='https://flagicons.lipis.dev/flags/4x3/id.svg' /> : <img src='https://flagicons.lipis.dev/flags/4x3/um.svg' />}
+            {locale === 'id' ? <img src='/id.svg' /> : <img src='/en.svg' />}
         </button>
     );
 }
