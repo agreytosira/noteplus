@@ -9,6 +9,7 @@ import parser from 'html-react-parser';
 
 function DetailPage() {
     const [note, setNote] = useState({});
+    const [loading, setLoading] = useState(true);
     const { id } = useParams();
     const navigate = useNavigate();
 
@@ -16,9 +17,11 @@ function DetailPage() {
         getNote(id)
             .then(({ data }) => {
                 setNote(data);
+                setLoading(false);
             })
             .catch((error) => {
                 console.error('Gagal mendapatkan detail catatan', error);
+                setLoading(false);
             });
     }, []);
 
@@ -70,6 +73,10 @@ function DetailPage() {
             }
         });
     };
+
+    if (loading) {
+        return <p>Loading...</p>;
+    }
 
     return (
         <>
