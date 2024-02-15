@@ -98,10 +98,11 @@ export class NoteApp extends Component {
         }
 
         const { toggleTheme, theme } = this.props;
+        const { authedUser } = this.state;
 
         return (
             <>
-                <Header toggleTheme={toggleTheme} theme={theme} />
+                <Header toggleTheme={toggleTheme} theme={theme} authedUser={authedUser} logout={this.onLogout} />
                 <Routes>
                     <Route path='/' element={<HomePage />} />
                     <Route path='/archived' element={<ArchivedPage />} />
