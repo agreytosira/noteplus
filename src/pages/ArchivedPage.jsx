@@ -30,7 +30,17 @@ export class ArchivedPage extends Component {
     }
 
     componentDidMount() {
-        getArchivedNotes()
+        this.fetchNotes();
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState.notes !== this.state.notes) {
+            this.fetchNotes();
+        }
+    }
+
+    async fetchNotes() {
+        await getArchivedNotes()
             .then(({ data }) => {
                 this.setState({ notes: data, initializing: false });
             })

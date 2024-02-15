@@ -28,10 +28,21 @@ export class HomePage extends Component {
         };
 
         this.onSearchHandler = this.onSearchHandler.bind(this);
+        this.fetchNotes = this.fetchNotes.bind(this);
     }
 
     componentDidMount() {
-        getActiveNotes()
+        this.fetchNotes();
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState.notes !== this.state.notes) {
+            this.fetchNotes();
+        }
+    }
+
+    async fetchNotes() {
+        await getActiveNotes()
             .then(({ data }) => {
                 this.setState({ notes: data, initializing: false });
             })

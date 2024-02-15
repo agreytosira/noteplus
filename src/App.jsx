@@ -55,7 +55,6 @@ export class NoteApp extends Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        console.log(prevState.theme, this.state.theme);
         if (prevState.theme !== this.state.theme) {
             document.body.classList.remove(prevState.theme);
             document.body.classList.add(this.state.theme);
