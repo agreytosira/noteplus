@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-function FloatingButton({ onCancel, id, onEdit, title, onAdd, isAddLink, onSaveEdit, onDelete, onArchive, onUnarchive, archived }) {
+function FloatingButton({ onCancel, id, title, onAdd, isAddLink, onDelete, onArchive, onUnarchive, archived }) {
     return (
         <>
             <div className='floating-button'>
@@ -18,14 +18,6 @@ function FloatingButton({ onCancel, id, onEdit, title, onAdd, isAddLink, onSaveE
                     <button onClick={() => onAdd()} title='Tambahkan' className='btn-add'>
                         <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'>
                             <path d='M11 11V5H13V11H19V13H13V19H11V13H5V11H11Z'></path>
-                        </svg>
-                    </button>
-                )}
-
-                {onEdit && (
-                    <button onClick={() => onEdit(id)} title='Ubah' className='btn-edit'>
-                        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'>
-                            <path d='M15.7279 9.57627L14.3137 8.16206L5 17.4758V18.89H6.41421L15.7279 9.57627ZM17.1421 8.16206L18.5563 6.74785L17.1421 5.33363L15.7279 6.74785L17.1421 8.16206ZM7.24264 20.89H3V16.6473L16.435 3.21231C16.8256 2.82179 17.4587 2.82179 17.8492 3.21231L20.6777 6.04074C21.0682 6.43126 21.0682 7.06443 20.6777 7.45495L7.24264 20.89Z'></path>
                         </svg>
                     </button>
                 )}
@@ -64,14 +56,6 @@ function FloatingButton({ onCancel, id, onEdit, title, onAdd, isAddLink, onSaveE
                         </button>
                     </Link>
                 )}
-
-                {onSaveEdit && (
-                    <button onClick={() => onSaveEdit()} title='Simpan Perubahan' className='btn-save'>
-                        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'>
-                            <path d='M7 19V13H17V19H19V7.82843L16.1716 5H5V19H7ZM4 3H17L21 7V20C21 20.5523 20.5523 21 20 21H4C3.44772 21 3 20.5523 3 20V4C3 3.44772 3.44772 3 4 3ZM9 15V19H15V15H9Z'></path>
-                        </svg>
-                    </button>
-                )}
             </div>
         </>
     );
@@ -80,11 +64,9 @@ function FloatingButton({ onCancel, id, onEdit, title, onAdd, isAddLink, onSaveE
 FloatingButton.propTypes = {
     onCancel: PropTypes.func,
     id: PropTypes.string,
-    onEdit: PropTypes.func,
     title: PropTypes.string,
     onAdd: PropTypes.func,
     isAddLink: PropTypes.bool,
-    onSaveEdit: PropTypes.func,
     onDelete: PropTypes.func,
     onArchive: PropTypes.func,
     onUnarchive: PropTypes.func,

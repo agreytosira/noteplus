@@ -60,10 +60,6 @@ function DetailPage() {
         });
     };
 
-    const onEditHandler = (id) => {
-        navigate(`/edit/${id}`);
-    };
-
     return (
         <>
             <main className='note-detail'>
@@ -79,7 +75,7 @@ function DetailPage() {
                     {archived && <span className='note__status'>Diarsipkan</span>}
                     <div className='note-detail__body'>{parser(body)}</div>
                 </div>
-                <FloatingButton archived={archived} onArchive={onArchiveHandler} onUnarchive={onUnarchiveHandler} onDelete={onDeleteHandler} id={id} title={title} onEdit={onEditHandler} />
+                <FloatingButton archived={archived} onArchive={onArchiveHandler} onUnarchive={onUnarchiveHandler} onDelete={onDeleteHandler} id={id} title={title} />
             </main>
         </>
     );

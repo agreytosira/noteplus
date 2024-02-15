@@ -5,7 +5,6 @@ import Footer from './components/Footer';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import DetailPage from './pages/DetailPage';
 import ArchivedPage from './pages/ArchivedPage';
-import EditPage from './pages/EditPage';
 import AddPage from './pages/AddPage';
 import NotFound from './components/NotFound';
 import PropTypes from 'prop-types';
@@ -42,7 +41,6 @@ export class NoteApp extends Component {
                     <Route path='/' element={<HomePage />} />
                     <Route path='/archived' element={<ArchivedPage />} />
                     <Route path='/note/:id' element={<DetailPage />} />
-                    <Route path='/edit/:id' element={<EditPage />} />
                     <Route path='/add' element={<AddPage />} />
                     <Route path='*' element={<NotFound />} />
                 </Routes>
