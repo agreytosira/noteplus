@@ -11,27 +11,12 @@ import PropTypes from 'prop-types';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import { getUserLogged, putAccessToken } from './utils/network-data';
+import { ThemeProvider } from './contexts/ThemeContext';
 
 function NoteAppWrapper() {
     const navigate = useNavigate();
-    const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
 
-    useEffect(() => {
-        document.body.classList.add(theme);
-
-        return () => {
-            document.body.classList.remove(theme);
-        };
-    }, [theme]);
-
-    const toggleTheme = () => {
-        const newTheme = theme === 'light' ? 'dark' : 'light';
-        setTheme(newTheme);
-
-        localStorage.setItem('theme', newTheme);
-    };
-
-    return <NoteApp navigate={navigate} theme={theme} toggleTheme={toggleTheme} />;
+    return <NoteApp navigate={navigate} />;
 }
 
 export class NoteApp extends Component {
@@ -40,7 +25,17 @@ export class NoteApp extends Component {
 
         this.state = {
             authedUser: null,
-            initializing: true
+            initializing: true,
+            theme: localStorage.getItem('theme') || 'light',
+            toggleTheme: () => {
+                this.setState((prevState) => {
+                    const newTheme = prevState.theme === 'light' ? 'dark' : 'light';
+                    localStorage.setItem('theme', newTheme);
+                    return {
+                        theme: newTheme
+                    };
+                });
+            }
         };
 
         this.onLoginSuccess = this.onLoginSuccess.bind(this);
@@ -48,6 +43,8 @@ export class NoteApp extends Component {
     }
 
     async componentDidMount() {
+        document.body.classList.add(this.state.theme);
+
         const { data } = await getUserLogged();
         this.setState(() => {
             return {
@@ -55,6 +52,14 @@ export class NoteApp extends Component {
                 initializing: false
             };
         });
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        console.log(prevState.theme, this.state.theme);
+        if (prevState.theme !== this.state.theme) {
+            document.body.classList.remove(prevState.theme);
+            document.body.classList.add(this.state.theme);
+        }
     }
 
     async onLoginSuccess({ accessToken }) {
@@ -92,12 +97,11 @@ export class NoteApp extends Component {
             );
         }
 
-        const { toggleTheme, theme } = this.props;
         const { authedUser } = this.state;
 
         return (
-            <>
-                <Header toggleTheme={toggleTheme} theme={theme} authedUser={authedUser} logout={this.onLogout} />
+            <ThemeProvider value={this.state}>
+                <Header authedUser={authedUser} logout={this.onLogout} />
                 <Routes>
                     <Route path='/' element={<HomePage />} />
                     <Route path='/archived' element={<ArchivedPage />} />
@@ -106,15 +110,13 @@ export class NoteApp extends Component {
                     <Route path='*' element={<NotFound />} />
                 </Routes>
                 <Footer />
-            </>
+            </ThemeProvider>
         );
     }
 }
 
 NoteApp.propTypes = {
-    navigate: PropTypes.func.isRequired,
-    theme: PropTypes.string.isRequired,
-    toggleTheme: PropTypes.func.isRequired
+    navigate: PropTypes.func.isRequired
 };
 
 export default NoteAppWrapper;
