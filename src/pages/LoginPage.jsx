@@ -4,9 +4,10 @@ import { Link } from 'react-router-dom';
 import LoginInput from '../components/LoginInput';
 import { login } from '../utils/network-data';
 import LocaleContext from '../contexts/LocaleContext';
+import LocaleButton from '../components/LocaleButton';
 
 function LoginPage({ loginSuccess }) {
-    const { locale, toggleLocale } = React.useContext(LocaleContext);
+    const { locale } = React.useContext(LocaleContext);
 
     async function onLogin({ email, password }) {
         const { error, data } = await login({ email, password });
@@ -35,9 +36,7 @@ function LoginPage({ loginSuccess }) {
                             Don't have an account? <Link to='/register'>Register here.</Link>
                         </p>
                     )}
-                    <button className='btn-language' onClick={toggleLocale}>
-                        {locale === 'id' ? <img src='https://flagicons.lipis.dev/flags/4x3/id.svg' /> : <img src='https://flagicons.lipis.dev/flags/4x3/um.svg' />}
-                    </button>
+                    <LocaleButton />
                 </div>
             </section>
         </main>

@@ -2,11 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ThemeContext from '../contexts/ThemeContext';
-import LocaleContext from '../contexts/LocaleContext';
+import LocaleButton from './LocaleButton';
 
 function Header({ authedUser, logout }) {
     const { theme, toggleTheme } = React.useContext(ThemeContext);
-    const { locale, toggleLocale } = React.useContext(LocaleContext);
 
     return (
         <header className='header'>
@@ -17,9 +16,7 @@ function Header({ authedUser, logout }) {
                     </Link>
                 </h1>
                 <div className='header__right'>
-                    <button className='btn-language' onClick={toggleLocale}>
-                        {locale === 'id' ? <img src='https://flagicons.lipis.dev/flags/4x3/id.svg' /> : <img src='https://flagicons.lipis.dev/flags/4x3/um.svg' />}
-                    </button>
+                    <LocaleButton />
                     <button onClick={toggleTheme} className='btn-theme'>
                         {theme === 'light' ? (
                             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'>

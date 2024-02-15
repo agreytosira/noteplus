@@ -3,10 +3,11 @@ import { Link, useNavigate } from 'react-router-dom';
 import RegisterInput from '../components/RegisterInput';
 import { register } from '../utils/network-data';
 import LocaleContext from '../contexts/LocaleContext';
+import LocaleButton from '../components/LocaleButton';
 
 function RegisterPage() {
     const navigate = useNavigate();
-    const { locale, toggleLocale } = React.useContext(LocaleContext);
+    const { locale } = React.useContext(LocaleContext);
 
     async function onRegisterHandler(user) {
         const { error } = await register(user);
@@ -34,9 +35,7 @@ function RegisterPage() {
                             Back to <Link to='/'>Login</Link>
                         </p>
                     )}
-                    <button className='btn-language' onClick={toggleLocale}>
-                        {locale === 'id' ? <img src='https://flagicons.lipis.dev/flags/4x3/id.svg' /> : <img src='https://flagicons.lipis.dev/flags/4x3/um.svg' />}
-                    </button>
+                    <LocaleButton />
                 </div>
             </section>
         </main>
