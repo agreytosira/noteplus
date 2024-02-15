@@ -102,7 +102,8 @@ class AddPage extends Component {
 }
 
 AddPage.propTypes = {
-    navigate: PropTypes.func.isRequired
+    navigate: PropTypes.func.isRequired,
+    locale: PropTypes.string.isRequired
 };
 
 export default AddPageWrapper;

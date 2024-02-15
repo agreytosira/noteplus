@@ -2,7 +2,7 @@
     "name": "noteplus",
     "description": "Simple CRUD Notes App using ReactJS",
     "author": "Agrey Tosira",
-    "version": "1.0.0",
+    "version": "3.0.0",
     "private": true,
     "type": "module",
     "scripts": {
