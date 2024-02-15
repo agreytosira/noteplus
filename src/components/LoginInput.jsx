@@ -43,8 +43,8 @@ class LoginInput extends React.Component {
     render() {
         return (
             <form onSubmit={this.onSubmitHandler} className='login-form'>
-                <input type='email' placeholder='Email' value={this.state.email} onChange={this.onEmailChangeHandler} />
-                <input type='password' placeholder='Password' value={this.state.password} onChange={this.onPasswordChangeHandler} />
+                <input type='email' placeholder='Email' value={this.state.email} onChange={this.onEmailChangeHandler} required />
+                <input type='password' placeholder='Password' value={this.state.password} onChange={this.onPasswordChangeHandler} required />
                 <button className='btn-primary'>Masuk</button>
             </form>
         );
