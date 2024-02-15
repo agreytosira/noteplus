@@ -87,6 +87,7 @@ body.light {
 
         &-item {
             border: 1px solid $borderLight;
+            border-top: 5px solid $grey;
 
             &__title {
                 color: $body;

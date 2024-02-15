@@ -232,7 +232,8 @@ textarea {
 
     &-item {
         border: 1px solid $grey;
-        border-radius: 0.5rem;
+        border-top: 5px solid $grey;
+        border-radius: 0.25rem;
         overflow: hidden;
         display: flex;
         flex-direction: column;
