@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState } from 'react';
+import React, { Component } from 'react';
 import Header from './components/Header';
 import HomePage from './pages/HomePage';
 import Footer from './components/Footer';
@@ -12,6 +12,7 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import { getUserLogged, putAccessToken } from './utils/network-data';
 import { ThemeProvider } from './contexts/ThemeContext';
+import { LocaleProvider } from './contexts/LocaleContext';
 
 function NoteAppWrapper() {
     const navigate = useNavigate();
@@ -35,6 +36,21 @@ export class NoteApp extends Component {
                         theme: newTheme
                     };
                 });
+            },
+            localeContext: {
+                locale: localStorage.getItem('locale') || 'id',
+                toggleLocale: () => {
+                    this.setState((prevState) => {
+                        const newLocale = prevState.localeContext.locale === 'id' ? 'en' : 'id';
+                        localStorage.setItem('locale', newLocale);
+                        return {
+                            localeContext: {
+                                ...prevState.localeContext,
+                                locale: newLocale
+                            }
+                        };
+                    });
+                }
             }
         };
 
@@ -87,29 +103,31 @@ export class NoteApp extends Component {
 
         if (this.state.authedUser === null) {
             return (
-                <>
+                <LocaleProvider value={this.state.localeContext}>
                     <Routes>
                         <Route path='/*' element={<LoginPage loginSuccess={this.onLoginSuccess} />} />
                         <Route path='/register' element={<RegisterPage />} />
                     </Routes>
-                </>
+                </LocaleProvider>
             );
         }
 
         const { authedUser } = this.state;
 
         return (
-            <ThemeProvider value={this.state}>
-                <Header authedUser={authedUser} logout={this.onLogout} />
-                <Routes>
-                    <Route path='/' element={<HomePage />} />
-                    <Route path='/archived' element={<ArchivedPage />} />
-                    <Route path='/note/:id' element={<DetailPage />} />
-                    <Route path='/add' element={<AddPage />} />
-                    <Route path='*' element={<NotFound />} />
-                </Routes>
-                <Footer />
-            </ThemeProvider>
+            <LocaleProvider value={this.state.localeContext}>
+                <ThemeProvider value={this.state}>
+                    <Header authedUser={authedUser} logout={this.onLogout} />
+                    <Routes>
+                        <Route path='/' element={<HomePage />} />
+                        <Route path='/archived' element={<ArchivedPage />} />
+                        <Route path='/note/:id' element={<DetailPage />} />
+                        <Route path='/add' element={<AddPage />} />
+                        <Route path='*' element={<NotFound />} />
+                    </Routes>
+                    <Footer />
+                </ThemeProvider>
+            </LocaleProvider>
         );
     }
 }

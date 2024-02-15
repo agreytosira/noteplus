@@ -1,11 +1,15 @@
-export const showFormattedDate = (date) => {
+export const showFormattedDate = (date, nation) => {
     const options = {
         weekday: 'long',
         year: 'numeric',
         month: 'long',
         day: 'numeric'
     };
-    return new Date(date).toLocaleDateString('id-ID', options);
+    if (nation === 'id') {
+        return new Date(date).toLocaleDateString('id-ID', options);
+    } else if (nation === 'en') {
+        return new Date(date).toLocaleDateString('en-EN', options);
+    }
 };
 
 export const generateSlug = (title) => {

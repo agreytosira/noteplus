@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import NoteList from '../components/NoteList';
 import { useSearchParams, Link } from 'react-router-dom';
 import SearchBar from '../components/SearchBar';
-import { getActiveNotes, getArchivedNotes } from '../utils/network-data';
+import { getArchivedNotes } from '../utils/network-data';
 import PropTypes from 'prop-types';
+import { LocaleConsumer } from '../contexts/LocaleContext';
 
 function ArchivedPageWrapper() {
     const [searchParams, setSearchParams] = useSearchParams();
@@ -62,29 +63,33 @@ export class ArchivedPage extends Component {
         const filteredNotes = notes.filter((note) => note.title.toLowerCase().includes(this.state.searchKeyword.toLowerCase()));
 
         return (
-            <>
-                <main className='note'>
-                    <section className='note__container container'>
-                        <div className='note__navigation'>
-                            <h2>Arsip Catatan</h2>
-                            <nav>
-                                <ul>
-                                    <li>
-                                        <Link to='/'>Sedang Aktif</Link>
-                                    </li>
-                                    <li>
-                                        <Link to='/archived' className='active'>
-                                            Diarsipkan
-                                        </Link>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
-                        <SearchBar searchHandler={this.onSearchHandler} searchKeyword={searchKeyword} />
-                        <NoteList notes={filteredNotes} initializing={initializing} />
-                    </section>
-                </main>
-            </>
+            <LocaleConsumer>
+                {({ locale }) => {
+                    return (
+                        <main className='note'>
+                            <section className='note__container container'>
+                                <div className='note__navigation'>
+                                    <h2>{locale === 'id' ? 'Arsip Catatan' : 'Notes Archived'}</h2>
+                                    <nav>
+                                        <ul>
+                                            <li>
+                                                <Link to='/'>{locale === 'id' ? 'Sedang Aktif' : 'Currently Active'}</Link>
+                                            </li>
+                                            <li>
+                                                <Link to='/archived' className='active'>
+                                                    {locale === 'id' ? 'Diarsipkan' : 'Archived'}
+                                                </Link>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                                <SearchBar searchHandler={this.onSearchHandler} searchKeyword={searchKeyword} />
+                                <NoteList notes={filteredNotes} initializing={initializing} />
+                            </section>
+                        </main>
+                    );
+                }}
+            </LocaleConsumer>
         );
     }
 }

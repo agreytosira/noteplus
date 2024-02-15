@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { LocaleConsumer } from '../contexts/LocaleContext';
 
 class LoginInput extends React.Component {
     constructor(props) {
@@ -42,11 +43,17 @@ class LoginInput extends React.Component {
 
     render() {
         return (
-            <form onSubmit={this.onSubmitHandler} className='login-form'>
-                <input type='email' placeholder='Email' value={this.state.email} onChange={this.onEmailChangeHandler} required />
-                <input type='password' placeholder='Password' value={this.state.password} onChange={this.onPasswordChangeHandler} required />
-                <button className='btn-primary'>Masuk</button>
-            </form>
+            <LocaleConsumer>
+                {({ locale }) => {
+                    return (
+                        <form onSubmit={this.onSubmitHandler} className='login-form'>
+                            <input type='email' placeholder={locale === 'id' ? 'Alamat Email' : 'Email Address'} value={this.state.email} onChange={this.onEmailChangeHandler} required />
+                            <input type='password' placeholder={locale === 'id' ? 'Kata Sandi' : 'Password'} value={this.state.password} onChange={this.onPasswordChangeHandler} required />
+                            <button className='btn-primary'>{locale === 'id' ? 'Masuk' : 'Login'}</button>
+                        </form>
+                    );
+                }}
+            </LocaleConsumer>
         );
     }
 }

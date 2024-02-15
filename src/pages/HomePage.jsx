@@ -5,6 +5,7 @@ import SearchBar from '../components/SearchBar';
 import { getActiveNotes } from '../utils/network-data';
 import FloatingButton from '../components/FloatingButton';
 import PropTypes from 'prop-types';
+import { LocaleConsumer } from '../contexts/LocaleContext';
 
 function HomePageWrapper() {
     const [searchParams, setSearchParams] = useSearchParams();
@@ -64,30 +65,36 @@ export class HomePage extends Component {
         const filteredNotes = notes ? notes.filter((note) => note.title.toLowerCase().includes(searchKeyword.toLowerCase())) : '';
 
         return (
-            <>
-                <main className='note'>
-                    <section className='note__container container'>
-                        <div className='note__navigation'>
-                            <h2>Catatan Aktif</h2>
-                            <nav>
-                                <ul>
-                                    <li>
-                                        <Link to='/' className='active'>
-                                            Sedang Aktif
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link to='/archived'>Diarsipkan</Link>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
-                        <SearchBar searchHandler={this.onSearchHandler} searchKeyword={searchKeyword} />
-                        <NoteList notes={filteredNotes} initializing={initializing} />
-                    </section>
-                </main>
-                <FloatingButton isAddLink={true} />
-            </>
+            <LocaleConsumer>
+                {({ locale }) => {
+                    return (
+                        <>
+                            <main className='note'>
+                                <section className='note__container container'>
+                                    <div className='note__navigation'>
+                                        <h2>{locale === 'id' ? 'Catatan Aktif' : 'Active Notes'}</h2>
+                                        <nav>
+                                            <ul>
+                                                <li>
+                                                    <Link to='/' className='active'>
+                                                        {locale === 'id' ? 'Sedang Aktif' : 'Currently Active'}
+                                                    </Link>
+                                                </li>
+                                                <li>
+                                                    <Link to='/archived'> {locale === 'id' ? 'Diarsipkan' : 'Archived'}</Link>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                    <SearchBar searchHandler={this.onSearchHandler} searchKeyword={searchKeyword} />
+                                    <NoteList notes={filteredNotes} initializing={initializing} />
+                                </section>
+                            </main>
+                            <FloatingButton isAddLink={true} />
+                        </>
+                    );
+                }}
+            </LocaleConsumer>
         );
     }
 }

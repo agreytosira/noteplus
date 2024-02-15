@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { LocaleConsumer } from '../contexts/LocaleContext';
 
 class RegisterInput extends React.Component {
     constructor(props) {
@@ -53,12 +54,18 @@ class RegisterInput extends React.Component {
 
     render() {
         return (
-            <form onSubmit={this.onSubmitHandler} className='register-form'>
-                <input type='text' placeholder='Nama' value={this.state.name} onChange={this.onNameChange} required />
-                <input type='email' placeholder='Email' value={this.state.email} onChange={this.onEmailChange} required />
-                <input type='password' placeholder='Password' autoComplete='current-password' value={this.state.password} onChange={this.onPasswordChange} required />
-                <button className='btn-primary'>Daftar</button>
-            </form>
+            <LocaleConsumer>
+                {({ locale }) => {
+                    return (
+                        <form onSubmit={this.onSubmitHandler} className='register-form'>
+                            <input type='text' placeholder={locale === 'id' ? 'Nama Panggilan' : 'Nickname'} value={this.state.name} onChange={this.onNameChange} required />
+                            <input type='email' placeholder={locale === 'id' ? 'Alamat Email' : 'Email Address'} value={this.state.email} onChange={this.onEmailChange} required />
+                            <input type='password' placeholder={locale === 'id' ? 'Kata Sandi' : 'Password'} autoComplete='current-password' value={this.state.password} onChange={this.onPasswordChange} required />
+                            <button className='btn-primary'>{locale === 'id' ? 'Daftar' : 'Register'}</button>
+                        </form>
+                    );
+                }}
+            </LocaleConsumer>
         );
     }
 }

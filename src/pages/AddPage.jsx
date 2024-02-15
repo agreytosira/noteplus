@@ -6,13 +6,15 @@ import Swal from 'sweetalert2';
 import JoditEditor from 'jodit-react';
 import ContentEditable from 'react-contenteditable';
 import PropTypes from 'prop-types';
+import LocaleContext from '../contexts/LocaleContext';
 
 function AddPageWrapper() {
     const navigate = useNavigate();
+    const { locale } = React.useContext(LocaleContext);
 
     return (
         <>
-            <AddPage navigate={navigate} />
+            <AddPage navigate={navigate} locale={locale} />
         </>
     );
 }
@@ -42,11 +44,12 @@ class AddPage extends Component {
 
     onAddHandler() {
         const { title, body } = this.state;
+        const { locale } = this.props;
 
         if (title === '' || body === '') {
             Swal.fire({
-                title: 'Isi Judul dan Catatan',
-                text: `Judul dan isi catatan tidak boleh kosong!`,
+                title: locale === 'id' ? 'Isi Judul dan Catatan' : 'Fill in the Title and Note',
+                text: locale === 'id' ? 'Judul dan isi catatan tidak boleh kosong!' : 'Title and note content cannot be empty!',
                 icon: 'warning',
                 timer: 1000
             });
@@ -57,8 +60,8 @@ class AddPage extends Component {
         this.props.navigate('/');
 
         Swal.fire({
-            title: 'Berhasil Tambah Catatan!',
-            text: `Catatan dengan judul ${title} berhasil ditambahkan!`,
+            title: locale === 'id' ? 'Berhasil Tambah Catatan!' : 'Successfully Added Note!',
+            text: locale === 'id' ? `Catatan dengan judul ${title} berhasil ditambahkan!` : `The note with the title ${title} has been added successfully!`,
             icon: 'success',
             timer: 1000
         });
@@ -83,18 +86,17 @@ class AddPage extends Component {
 
     render() {
         const { title, body } = this.state;
+        const { locale } = this.props;
 
         return (
-            <>
-                <main className='note-detail'>
-                    <div className='note-detail__container container'>
-                        <span className='pages-info'>TAMBAH CATATAN</span>
-                        <ContentEditable className='note-input__title' innerRef={this.titleAddRef} html={title} onChange={this.onChangeTitleHandler} />
-                        <JoditEditor ref={this.editorRef} value={body} onChange={this.onChangeBodyHandler} />
-                    </div>
-                    <FloatingButton title={title} onCancel={this.onCancelHandler} onAdd={this.onAddHandler} />
-                </main>
-            </>
+            <main className='note-detail'>
+                <div className='note-detail__container container'>
+                    <span className='pages-info'>{locale === 'id' ? 'TAMBAH CATATAN' : 'ADD NEW NOTE'}</span>
+                    <ContentEditable className='note-input__title' innerRef={this.titleAddRef} html={title} onChange={this.onChangeTitleHandler} />
+                    <JoditEditor ref={this.editorRef} value={body} onChange={this.onChangeBodyHandler} />
+                </div>
+                <FloatingButton title={title} onCancel={this.onCancelHandler} onAdd={this.onAddHandler} />
+            </main>
         );
     }
 }

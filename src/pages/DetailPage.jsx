@@ -6,12 +6,14 @@ import FloatingButton from '../components/FloatingButton';
 import Swal from 'sweetalert2';
 import { archiveNote, unarchiveNote, deleteNote } from '../utils/network-data';
 import parser from 'html-react-parser';
+import LocaleContext from '../contexts/LocaleContext';
 
 function DetailPage() {
     const [note, setNote] = useState({});
     const [loading, setLoading] = useState(true);
     const { id } = useParams();
     const navigate = useNavigate();
+    const { locale } = React.useContext(LocaleContext);
 
     useEffect(() => {
         getNote(id)
@@ -20,7 +22,11 @@ function DetailPage() {
                 setLoading(false);
             })
             .catch((error) => {
-                console.error('Gagal mendapatkan detail catatan', error);
+                if (locale === 'id') {
+                    console.error('Gagal mendapatkan rincian catatan', error);
+                } else {
+                    console.error('Failed to get notes detail', error);
+                }
                 setLoading(false);
             });
     }, []);
@@ -34,8 +40,8 @@ function DetailPage() {
         archiveNote(id);
         navigate('/archived');
         Swal.fire({
-            title: 'Berhasil Arsipkan Catatan!',
-            text: `Catatan dengan judul ${title} telah diarsipkan`,
+            title: locale === 'id' ? 'Berhasil Arsipkan Catatan!' : 'Note Archived Successfully!',
+            text: locale === 'id' ? `Catatan dengan judul ${title} telah diarsipkan` : `The note with the title ${title} has been archived`,
             icon: 'success',
             timer: 1000
         });
@@ -45,8 +51,8 @@ function DetailPage() {
         unarchiveNote(id);
         navigate('/');
         Swal.fire({
-            title: 'Berhasil Aktifkan Catatan!',
-            text: `Catatan dengan judul ${title} telah diaktifkan kembali`,
+            title: locale === 'id' ? 'Berhasil Aktifkan Catatan!' : 'Note Activated Successfully!',
+            text: locale === 'id' ? `Catatan dengan judul ${title} telah diaktifkan kembali` : `The note with the title ${title} has been activated`,
             icon: 'success',
             timer: 1000
         });
@@ -54,17 +60,17 @@ function DetailPage() {
 
     const onDeleteHandler = (id, title) => {
         Swal.fire({
-            title: 'Yakin hapus data catatan?',
-            text: 'Kamu tidak akan bisa mengembalikan catatan yang sudah dihapus!',
+            title: locale === 'id' ? 'Yakin hapus data catatan?' : 'Are you sure to delete this note?',
+            text: locale === 'id' ? 'Kamu tidak akan bisa mengembalikan catatan yang sudah dihapus!' : 'You cannot recover a deleted note!',
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonText: 'Ya, hapus!',
-            cancelButtonText: 'Batal'
+            confirmButtonText: locale === 'id' ? 'Ya, hapus!' : 'Yes, delete it!',
+            cancelButtonText: locale === 'id' ? 'Batal' : 'Cancel'
         }).then((result) => {
             if (result.isConfirmed) {
                 Swal.fire({
-                    title: 'Berhasil Hapus Catatan!',
-                    text: `Catatan dengan judul ${title} berhasil dihapus`,
+                    title: locale === 'id' ? 'Berhasil Hapus Catatan!' : 'Note Deleted Successfully!',
+                    text: locale === 'id' ? `Catatan dengan judul ${title} berhasil dihapus` : `The note with the title ${title} has been deleted`,
                     icon: 'success',
                     timer: 1000
                 });
@@ -82,13 +88,13 @@ function DetailPage() {
                         <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'>
                             <path d='M7.82843 10.9999H20V12.9999H7.82843L13.1924 18.3638L11.7782 19.778L4 11.9999L11.7782 4.22168L13.1924 5.63589L7.82843 10.9999Z'></path>
                         </svg>{' '}
-                        Kembali ke Halaman Utama
+                        {locale === 'id' ? 'Kembali ke Halaman Utama' : 'Back to Home Page'}
                     </button>
                     {!loading ? (
                         <>
                             <h1>{title}</h1>
-                            <span>Dibuat pada {showFormattedDate(createdAt)}</span>
-                            {archived && <span className='note__status'>Diarsipkan</span>}
+                            {locale === 'id' ? <span>Dibuat pada {showFormattedDate(createdAt, 'id')}</span> : <span>Created at {showFormattedDate(createdAt, 'en')}</span>}
+                            {archived && <span className='note__status'>{locale === 'id' ? 'Diarsipkan' : 'Archived'}</span>}
                             {body && <div className='note-detail__body'>{parser(body)}</div>}
                         </>
                     ) : (
