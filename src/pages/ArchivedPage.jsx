@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import NoteList from '../components/NoteList';
 import { useSearchParams, Link } from 'react-router-dom';
 import SearchBar from '../components/SearchBar';
-import { getArchivedNotes } from '../utils/network-data';
+import { getActiveNotes, getArchivedNotes } from '../utils/network-data';
 import PropTypes from 'prop-types';
 
 function ArchivedPageWrapper() {
@@ -22,10 +22,21 @@ export class ArchivedPage extends Component {
 
         this.state = {
             searchKeyword: props.defaultKeyword || '',
-            notes: getArchivedNotes()
+            notes: [],
+            initializing: true
         };
 
         this.onSearchHandler = this.onSearchHandler.bind(this);
+    }
+
+    componentDidMount() {
+        getArchivedNotes()
+            .then(({ data }) => {
+                this.setState({ notes: data, initializing: false });
+            })
+            .catch((error) => {
+                console.error('Gagal mengambil data catatan:', error);
+            });
     }
 
     onSearchHandler(keyword) {
@@ -37,7 +48,7 @@ export class ArchivedPage extends Component {
     }
 
     render() {
-        const { searchKeyword, notes } = this.state;
+        const { searchKeyword, notes, initializing } = this.state;
         const filteredNotes = notes.filter((note) => note.title.toLowerCase().includes(this.state.searchKeyword.toLowerCase()));
 
         return (
@@ -60,7 +71,7 @@ export class ArchivedPage extends Component {
                             </nav>
                         </div>
                         <SearchBar searchHandler={this.onSearchHandler} searchKeyword={searchKeyword} />
-                        <NoteList notes={filteredNotes} />
+                        <NoteList notes={filteredNotes} initializing={initializing} />
                     </section>
                 </main>
             </>

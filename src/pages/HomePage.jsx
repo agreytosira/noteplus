@@ -23,10 +23,21 @@ export class HomePage extends Component {
 
         this.state = {
             searchKeyword: props.defaultKeyword || '',
-            notes: getActiveNotes()
+            notes: [],
+            initializing: true
         };
 
         this.onSearchHandler = this.onSearchHandler.bind(this);
+    }
+
+    componentDidMount() {
+        getActiveNotes()
+            .then(({ data }) => {
+                this.setState({ notes: data, initializing: false });
+            })
+            .catch((error) => {
+                console.error('Gagal mengambil data catatan:', error);
+            });
     }
 
     onSearchHandler(keyword) {
@@ -38,8 +49,8 @@ export class HomePage extends Component {
     }
 
     render() {
-        const { searchKeyword, notes } = this.state;
-        const filteredNotes = notes.filter((note) => note.title.toLowerCase().includes(searchKeyword.toLowerCase()));
+        const { searchKeyword, notes, initializing } = this.state;
+        const filteredNotes = notes ? notes.filter((note) => note.title.toLowerCase().includes(searchKeyword.toLowerCase())) : '';
 
         return (
             <>
@@ -61,7 +72,7 @@ export class HomePage extends Component {
                             </nav>
                         </div>
                         <SearchBar searchHandler={this.onSearchHandler} searchKeyword={searchKeyword} />
-                        <NoteList notes={filteredNotes} />
+                        <NoteList notes={filteredNotes} initializing={initializing} />
                     </section>
                 </main>
                 <FloatingButton isAddLink={true} />

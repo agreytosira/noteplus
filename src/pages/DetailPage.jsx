@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getNote } from '../utils/network-data';
 import { showFormattedDate } from '../utils/format';
@@ -8,10 +8,21 @@ import { archiveNote, unarchiveNote, deleteNote } from '../utils/network-data';
 import parser from 'html-react-parser';
 
 function DetailPage() {
+    const [note, setNote] = useState({});
     const { id } = useParams();
-    const { title, body, createdAt, archived } = getNote(id);
     const navigate = useNavigate();
 
+    useEffect(() => {
+        getNote(id)
+            .then(({ data }) => {
+                setNote(data);
+            })
+            .catch((error) => {
+                console.error('Gagal mendapatkan detail catatan', error);
+            });
+    }, []);
+
+    const { title, body, createdAt, archived } = note;
     const backToHomePage = () => {
         navigate('/');
     };
@@ -73,7 +84,7 @@ function DetailPage() {
                     <h1>{title}</h1>
                     <span>Dibuat pada {showFormattedDate(createdAt)}</span>
                     {archived && <span className='note__status'>Diarsipkan</span>}
-                    <div className='note-detail__body'>{parser(body)}</div>
+                    {body && <div className='note-detail__body'>{parser(body)}</div>}
                 </div>
                 <FloatingButton archived={archived} onArchive={onArchiveHandler} onUnarchive={onUnarchiveHandler} onDelete={onDeleteHandler} id={id} title={title} />
             </main>
