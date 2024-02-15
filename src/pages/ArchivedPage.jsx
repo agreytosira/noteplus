@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import NoteList from '../components/NoteList';
 import { useSearchParams, Link } from 'react-router-dom';
 import SearchBar from '../components/SearchBar';
-import { getArchivedNotes } from '../utils/data';
+import { getArchivedNotes } from '../utils/network-data';
 import PropTypes from 'prop-types';
 
 function ArchivedPageWrapper() {

@@ -1,10 +1,10 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { getNote } from '../utils/data';
+import { getNote } from '../utils/network-data';
 import { showFormattedDate } from '../utils/format';
 import FloatingButton from '../components/FloatingButton';
 import Swal from 'sweetalert2';
-import { archiveNote, unarchiveNote, deleteNote } from '../utils/data';
+import { archiveNote, unarchiveNote, deleteNote } from '../utils/network-data';
 import parser from 'html-react-parser';
 
 function DetailPage() {

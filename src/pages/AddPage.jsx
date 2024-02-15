@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { addNote } from '../utils/data';
+import { addNote } from '../utils/network-data';
 import FloatingButton from '../components/FloatingButton';
 import Swal from 'sweetalert2';
 import JoditEditor from 'jodit-react';

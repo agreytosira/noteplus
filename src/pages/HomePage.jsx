@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import NoteList from '../components/NoteList';
 import { useSearchParams, Link } from 'react-router-dom';
 import SearchBar from '../components/SearchBar';
-import { getActiveNotes } from '../utils/data';
+import { getActiveNotes } from '../utils/network-data';
 import FloatingButton from '../components/FloatingButton';
 import PropTypes from 'prop-types';
 
