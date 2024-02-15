@@ -18,6 +18,20 @@ body.light {
         }
     }
 
+    .login,
+    .register {
+        &__container {
+            background-color: darken($bodyLight, 5%);
+        }
+
+        &-form {
+            input {
+                background-color: $bodyLight !important;
+                color: $body;
+            }
+        }
+    }
+
     .btn-logout {
         color: $body;
 

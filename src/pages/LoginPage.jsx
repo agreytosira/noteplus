@@ -14,13 +14,21 @@ function LoginPage({ loginSuccess }) {
     }
 
     return (
-        <section className='login-page'>
-            <h2>Silakan masuk untuk melanjutkan ...</h2>
-            <LoginInput login={onLogin} />
-            <p>
-                Belum punya akun? <Link to='/register'>Daftar di sini.</Link>
-            </p>
-        </section>
+        <main>
+            <section className='login'>
+                <div className='login__container'>
+                    <h1 className='header__brand'>
+                        <Link to='/'>
+                            Note<span>Plus</span>
+                        </Link>
+                    </h1>
+                    <LoginInput login={onLogin} />
+                    <p>
+                        Belum punya akun? <Link to='/register'>Daftar di sini.</Link>
+                    </p>
+                </div>
+            </section>
+        </main>
     );
 }
 

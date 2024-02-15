@@ -14,13 +14,21 @@ function RegisterPage() {
     }
 
     return (
-        <section className='register-page'>
-            <h2>Gak perlu serius-serius ya isinya ...</h2>
-            <RegisterInput register={onRegisterHandler} />
-            <p>
-                Kembali ke <Link to='/'>Masuk</Link>
-            </p>
-        </section>
+        <main>
+            <section className='register'>
+                <div className='register__container'>
+                    <h1 className='header__brand'>
+                        <Link to='/'>
+                            Note<span>Plus</span>
+                        </Link>
+                    </h1>
+                    <RegisterInput register={onRegisterHandler} />
+                    <p>
+                        Kembali ke <Link to='/'>Masuk</Link>
+                    </p>
+                </div>
+            </section>
+        </main>
     );
 }
 

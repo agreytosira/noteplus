@@ -602,6 +602,53 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
     }
 }
 
+.login,
+.register {
+    width: 100%;
+    min-height: 100dvh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__container {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+        border-radius: 1rem;
+        background-color: lighten($body, 5%);
+        width: 90%;
+
+        p {
+            font-size: 0.9rem;
+
+            a {
+                text-decoration: none;
+                color: $blue;
+                font-weight: 600;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+
+    &-form {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        input,
+        input:valid {
+            background: lighten($body, 5%) !important;
+        }
+    }
+}
+
 @keyframes l3 {
     to {
         transform: rotate(1turn);

@@ -83,17 +83,12 @@ export class NoteApp extends Component {
 
         if (this.state.authedUser === null) {
             return (
-                <div className='contact-app'>
-                    <header className='contact-app__header'>
-                        <h1>Aplikasi Kontak</h1>
-                    </header>
-                    <main>
-                        <Routes>
-                            <Route path='/*' element={<LoginPage loginSuccess={this.onLoginSuccess} />} />
-                            <Route path='/register' element={<RegisterPage />} />
-                        </Routes>
-                    </main>
-                </div>
+                <>
+                    <Routes>
+                        <Route path='/*' element={<LoginPage loginSuccess={this.onLoginSuccess} />} />
+                        <Route path='/register' element={<RegisterPage />} />
+                    </Routes>
+                </>
             );
         }
 

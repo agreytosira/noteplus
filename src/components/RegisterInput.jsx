@@ -53,11 +53,11 @@ class RegisterInput extends React.Component {
 
     render() {
         return (
-            <form onSubmit={this.onSubmitHandler} className='register-input'>
+            <form onSubmit={this.onSubmitHandler} className='register-form'>
                 <input type='text' placeholder='Nama' value={this.state.name} onChange={this.onNameChange} />
                 <input type='email' placeholder='Email' value={this.state.email} onChange={this.onEmailChange} />
                 <input type='password' placeholder='Password' autoComplete='current-password' value={this.state.password} onChange={this.onPasswordChange} />
-                <button>Register</button>
+                <button className='btn-primary'>Daftar</button>
             </form>
         );
     }
