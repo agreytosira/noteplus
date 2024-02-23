@@ -19,7 +19,7 @@ function HomePage() {
 
   useEffect(() => {
     fetchNotes()
-  }, [searchParams]) // Fetch ulang data jika searchParams berubah
+  }, [searchParams])
 
   const fetchNotes = async () => {
     try {
