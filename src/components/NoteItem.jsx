@@ -13,7 +13,7 @@ function NoteItem({ id, title, body, createdAt }) {
       <div className='note-item__body'>
         <h3 className='note-item__title'>{title}</h3>
         <p className='note-item__date'>{locale === 'id' ? showFormattedDate(createdAt, 'id') : showFormattedDate(createdAt, 'en')}</p>
-        <p className='note-item__content'>{parser(body)}</p>
+        <div className='note-item__content'>{parser(body)}</div>
       </div>
     </Link>
   )
